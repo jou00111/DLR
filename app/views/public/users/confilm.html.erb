@@ -1,2 +1,18 @@
-<h1>Public::Users#confilm</h1>
-<p>Find me in app/views/public/users/confilm.html.erb</p>
+<div class="container-fluid my-5">
+  <div class="row justify-content-center">
+    <h3>本当に退会しますか？</h3>
+  </div>
+  <div class="row justify-content-center">
+    <div class="col text-center">
+      <P>
+        退会すると、会員登録情報や<br>
+        これまでの投稿記事が閲覧できなくなります。<br>
+        退会する場合は、「退会する」をクリックしてください。
+      </P>
+    </div>
+  </div>
+  <div class="text-center">
+    <%= link_to '退会しない', currenr_users_path, class:"btn btn-sm btn-primary m-1" %>
+    <%= link_to '退会する', users_withdraw_path, method: :patch, data: { confirm: '本当に退会しますか？' }, class: "btn btn-sm btn-danger" %>
+  </div>
+</div>

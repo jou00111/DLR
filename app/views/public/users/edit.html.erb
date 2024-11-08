@@ -1,2 +1,16 @@
-<h1>Public::Users#edit</h1>
-<p>Find me in app/views/public/users/edit.html.erb</p>
+<h2>ユーザー情報編集</h2>
+<%= form_with model: @user, url:user_information_path,method: :patch do |f| %> 
+
+  #名前変更
+    <%= f.label :name %>
+ <%= f.text_field :name %>
+
+  #紹介文変更
+ <%= f.label :introduction %>
+ <%= f.text_area :introduction %>
+
+ #得意分野
+<%= f.label :sepecify_field %>
+<%= f.text_field :specify_field %>
+
+<% end %>
