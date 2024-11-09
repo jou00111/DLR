@@ -6,5 +6,6 @@ class CreatePostTags < ActiveRecord::Migration[6.1]
       t.integer :tag_id,      null: false #外部キー
       t.timestamps
     end
+    add_index :post_tags, [:post_tag_id,:tag_id],unique: true
   end
 end

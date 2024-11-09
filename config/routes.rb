@@ -1,16 +1,4 @@
 Rails.application.routes.draw do
-  namespace :public do
-    get 'posts/new'
-    get 'posts/edit'
-    get 'posts/show'
-    get 'posts/index'
-  end
-  namespace :public do
-    get 'users/mypage'
-    get 'users/edit'
-    get 'users/show'
-    get 'users/confilm'
-  end
   #URLユーザー側変更
   devise_for :users, controllers: {
   registrations: "public/registrations",
@@ -25,7 +13,7 @@ Rails.application.routes.draw do
 
   #public側機能
   scope module: :public do
-    get  '/mypage' => 'users#show', as: "mypage"
+    get  '/mypage' => 'users#mypage', as: "mypage"
     get  '/users/mypage' => 'users#confilm'
     patch '/users/withdraw' => 'users#withdraw'
     resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy]

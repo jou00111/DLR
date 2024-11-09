@@ -1,4 +1,6 @@
 class Public::UsersController < ApplicationController
+
+
   def mypage
     @user = current_user
   end
@@ -15,7 +17,7 @@ class Public::UsersController < ApplicationController
   def unsubscribe
     @user = current_user
   end
-  
+
   #退会処理
   def withdraw
     def withdraw
@@ -25,8 +27,10 @@ class Public::UsersController < ApplicationController
       flash[:notice] = "退会処理を実行いたしました"
       redirect_to root_path
     end
+  end
+  private
+  def customer_params
+    params.require(:user).permit(:name,:password, :specify_field, :introduction,:is_active,:profile_image, :email)
+  end
 
-private
-def customer_params
-  params.require(:user).permit(:name,:password, :specify_field, :introduction,:is_active,:profile_image, :email)
 end
