@@ -14,4 +14,8 @@ class Post < ApplicationRecord
       "販売停止中"
     end
   end
+
+  def active_for_authentication?
+    super && (is_active == true)
+  end
 end

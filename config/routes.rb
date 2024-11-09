@@ -18,7 +18,7 @@ Rails.application.routes.draw do
     patch '/users/withdraw' => 'users#withdraw'
     resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy]
     resources :users, only:[:edit, :update, :destroy]
-  end 
+  end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

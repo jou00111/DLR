@@ -1,2 +1,47 @@
-<h1>Public::Posts#edit</h1>
-<p>Find me in app/views/public/posts/edit.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col-mg-2">
+      <h4 class="font-weight-bold my-4 bg-light">商品編集</h4>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+
+      <%= form_with model: @post, url: post_path(@post.id) do |f| %>
+
+        <table class='mx-auto'>
+          <tr>
+            <td>商品画像</td>
+            <td><%= f.file_field :image, accept: "image/*" %></td>
+          </tr>
+          <tr>
+            <td>商品名</td>
+            <td><%= f.text_field :title %></td>
+          </tr>
+          <tr>
+            <td>商品説明</td>
+            <td><%= f.text_area :body %></td>
+          </tr>
+          <tr>
+            <td>販売ステータス</td>
+            <td>
+              <div class="custom-control custom-radio custom-control-inline">
+                <%= f.radio_button :is_active, :true %>
+                <%= f.label :is_active, '販売中', for: 'is_active-on-sale' %>
+              </div>
+              <div class="custom-control custom-radio custom-control-inline">
+                <%= f.radio_button :is_active, :false %>
+                <%= f.label :is_active, '販売停止中', for: 'is_active-off-sale' %>
+              </div>
+            </td>
+          </tr>
+        </table>
+
+          <div class="text-center"><%= f.submit '変更を保存',class: "btn btn-success" %></div>
+
+      <% end %>
+
+    </div>
+  </div>
+</div>
