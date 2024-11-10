@@ -30,8 +30,8 @@
         <tbody>
           <tr>
             <td><%= post.id %></td>
-            <td><%= link_to posts_path(post.id) do %>
-                <%= item.name %>
+            <td><%= link_to post_path(post.id) do %>
+                <%= post.user.name %>
                 <% end %></td>
             <td><%= post.title %></td>
             <td><%= post.body %></td>
