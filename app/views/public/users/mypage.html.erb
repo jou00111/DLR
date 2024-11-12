@@ -1,9 +1,0 @@
-<h2>マイページ</h2>
-<p>氏名</p>
-<p><%= @user.name %></p>
-<p>紹介文</p>
-<p><%= @user.introduction %></p>
-<p>得意分野</p>
-<p><%= @user.specify_field %></p>
-<%=link_to "編集する", users_information_edit_path(@user), class:"btn btn-prymary w-25" %>
-<%=link_to "退会する", users_confilm_path, class:"btn btn-secondary w-25" %>
