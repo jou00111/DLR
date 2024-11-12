@@ -52,11 +52,13 @@ ActiveRecord::Schema.define(version: 2024_11_09_045552) do
   end
 
   create_table "post_tags", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "tag_id", null: false
+    t.integer "user_id_id", null: false
+    t.integer "tag_id_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index "\"post_tag_id\", \"tag_id\"", name: "index_post_tags_on_post_tag_id_and_tag_id", unique: true
+    t.index ["tag_id_id"], name: "index_post_tags_on_tag_id_id"
+    t.index ["user_id_id"], name: "index_post_tags_on_user_id_id"
   end
 
   create_table "posts", force: :cascade do |t|
@@ -93,4 +95,6 @@ ActiveRecord::Schema.define(version: 2024_11_09_045552) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "post_tags", "tag_ids"
+  add_foreign_key "post_tags", "user_ids"
 end
