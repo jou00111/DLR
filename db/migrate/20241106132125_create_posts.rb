@@ -4,8 +4,7 @@ class CreatePosts < ActiveRecord::Migration[6.1]
       t.integer  :user_id,      null: false #外部キー
       t.string   :title,       null: false #タイトル
       t.string   :body,        null: false #本文
-      t.boolean  :is_active,   null:false, default: true #公開ステータス
-      
+      t.boolean  :is_active,   null: true     
 
 
 
