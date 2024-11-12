@@ -1,41 +1,36 @@
-<div class="col-md-6">
-                    <div class="d-flex flex-column align-items-end mt-3">
-                        <nav class="navbar navbar-expand-lg p-0">
-                            <ul class="nav">
-                                #ユーザー側ナビゲーションボタン
-                                <% if user_signed_in? %>
-                                    <li class="nav-item"><%= link_to "マイページ", mypage_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
-                                    <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
-                                    <li class="nav-item"><%= link_to "新規投稿", new_post_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
-                                    <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link btn btn-outline-secondary text-dark ml-3" %></li>
-                                    #管理者側のナビゲーションボタン
-                                <% elsif admin_signed_in? %>
-                                    <li class="nav-item"><%= link_to "投稿一覧", admin_posts_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
-                                    <li class="nav-item"><%= link_to "会員一覧", admin_users_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
-                                    <li class="nav-item"><%= link_to "ジャンル一覧", admin_genres_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
-                                    <li class="nav-item"><%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link btn btn-outline-secondary text-dark ml-3" %></li>
-                                <% else %>
-                                    #未ログイン時のナビゲーションボタン
-                                    <li class="nav-item"><%= link_to "About", about_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
-                                    <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
-                                    <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
-                                    <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link btn btn-outline-secondary text-dark ml-3" %></li>
-                                <% end %>
-                            </ul>
-                        </nav>
-
-                        <form class="form-inline mt-2 mb-3">
-                            <div class="input-group">
-                                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-outline-secondary" type="submit">
-                                        <i class="bi bi-search"></i>
-                                    </button>
-                                </div>
+<header>
+    <div class="container">
+        <div class="row">
+            <a class="navbar-brand" href="/"><span>DLR</span></a>
+            <div class="col-md-6">
+                <div class="d-flex flex-column align-items-end mt-3">
+                    <nav class="navbar navbar-expand-lg p-0">
+                        <ul class="nav">
+                            <% if user_signed_in? %>
+                                <li class="nav-item"><%= link_to "マイページ", mypage_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
+                                <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
+                                <li class="nav-item"><%= link_to "新規投稿", new_post_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
+                                <li class="nav-item"><%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link btn btn-outline-secondary text-dark ml-3" %></li>
+                            <% else %>
+                                <li class="nav-item"><%= link_to "About", about_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
+                                <li class="nav-item"><%= link_to "投稿一覧", posts_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
+                                <li class="nav-item"><%= link_to "新規登録", new_user_registration_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %></li>
+                                <li class="nav-item"><%= link_to "ログイン", new_user_session_path, class: "nav-link btn btn-outline-secondary text-dark ml-3" %></li>
+                            <% end %>
+                        </ul>
+                    </nav>
+                    <form class="form-inline mt-2 mb-3">
+                        <div class="input-group">
+                            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                            <div class="input-group-append">
+                                <button class="btn btn-outline-secondary" type="submit">
+                                    <i class="bi bi-search"></i>
+                                </button>
                             </div>
-                        </form>
-                    </div>
+                        </div>
+                    </form>
                 </div>
-            </div>
+            </div>    
         </div>
-    </header>
+    <div>    
+</header>

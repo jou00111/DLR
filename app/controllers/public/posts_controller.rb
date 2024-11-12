@@ -36,6 +36,12 @@ class Public::PostsController < ApplicationController
   def index
     @posts = Post.all
   end
+  #投稿削除処理
+  def destroy
+    @post = Post.find(params[:id])
+    @post.delete
+    redirect_to posts_path
+  end
 
   private
   #許可する投稿のパラメータ
