@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   #新規投稿画面
   def new
     @post = Post.new
@@ -51,4 +52,15 @@ class Public::PostsController < ApplicationController
       whitelisted[:is_active] = ActiveModel::Type::Boolean.new.cast(whitelisted[:is_active])
     end
   end
+  def is_matching_login_user
+
+    post = Post.find(params[:id])
+
+   unless post.user == current_user
+
+      redirect_to posts_path
+
+   end
+  end
+
 end

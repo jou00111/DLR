@@ -3,6 +3,11 @@ class Post < ApplicationRecord
   has_many :post_tags, dependent: :destroy
   has_many :post_comments, dependent: :destroy
   belongs_to :user
+
+  #バリデーション
+  validates :title, presence: true
+  validates :body, presence: true
+  validates :is_active, inclusion: { in: [true, false] }
   #画像
   has_one_attached :image
 
