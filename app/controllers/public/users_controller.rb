@@ -2,6 +2,7 @@ class Public::UsersController < ApplicationController
   # マイページ
   def mypage
     @user = current_user
+    @posts = @user.posts
   end
 
   # 編集画面
@@ -20,8 +21,11 @@ class Public::UsersController < ApplicationController
   end
   def update
     @user = current_user
-    @user.update(user_params)
-    redirect_to current_user
+    if @user.update(user_params)  # 修正: post_params を渡す
+      redirect_to mypage_path, notice: "You have updated information successfully." # 編集後マイページ画面へ
+    else
+      render :edit  # 編集失敗時はそのまま
+    end
   end
   # 退会処理
   def withdraw
@@ -36,7 +40,7 @@ class Public::UsersController < ApplicationController
 
   # 会員の許可するパラメータ
   def user_params
-    permitted_params = params.require(:user).permit(:name, :password, :password_confirmation, :current_password, :specify_field, :introduction, :is_active, :profile_image, :email)
+    permitted_params = params.require(:user).permit(:name, :password, :password_confirmation, :current_password, :specify_field, :introduction, :is_active, :profile_image, :email )
 
     # パスワードが空の場合は、パスワードフィールドを削除
     if permitted_params[:password].blank?
@@ -55,7 +59,6 @@ class Public::UsersController < ApplicationController
   # 会員の論理削除、退会済みのアカウントを利用停止
   def reject_user
     @user = User.find_by(name: params[:user][:name])
-    
     # 退会済みのユーザーかどうかのチェック
     if @user && @user.valid_password?(params[:user][:password]) && !@user.is_active
       flash[:alert] = "退会済みです。再度ご登録をしてご利用ください"
