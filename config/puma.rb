@@ -56,4 +56,4 @@ if ENV['RAILS_ENV'] == 'production'
   )
   # デーモン
   daemonize
-endexi
+end
