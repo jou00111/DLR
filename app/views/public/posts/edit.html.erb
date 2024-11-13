@@ -1,7 +1,8 @@
+<%= render "layouts/error", obj:@post %>
 <div class="container">
   <div class="row">
     <div class="col-mg-2">
-      <h4 class="font-weight-bold my-4 bg-light">商品編集</h4>
+      <h4 class="font-weight-bold my-4 bg-light">投稿編集</h4>
     </div>
   </div>
 
@@ -12,19 +13,19 @@
 
         <table class='mx-auto'>
           <tr>
-            <td>商品画像</td>
+            <td>画像</td>
             <td><%= f.file_field :image, accept: "image/*" %></td>
           </tr>
           <tr>
-            <td>商品名</td>
+            <td>題名</td>
             <td><%= f.text_field :title %></td>
           </tr>
           <tr>
-            <td>商品説明</td>
+            <td>説明</td>
             <td><%= f.text_area :body %></td>
           </tr>
           <tr>
-            <td>販売ステータス</td>
+            <td>公開ステータス</td>
             <td>
               <div class="custom-control custom-radio custom-control-inline">
                 <%= f.radio_button :is_active, :true %>
