@@ -9,7 +9,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.1]
       t.string  :name,               null: false    #名前カラム
       t.string  :specify_field      #分野カラム
       t.boolean :is_active,          null: false, default: true #会員ステータス
-      t.text    :introduction,        null: false
+      t.text    :introduction,        null: true
 
       ## Recoverable
       t.string   :reset_password_token

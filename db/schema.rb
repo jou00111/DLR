@@ -66,7 +66,7 @@ ActiveRecord::Schema.define(version: 2024_11_09_045552) do
     t.string "name", null: false
     t.string "specify_field"
     t.boolean "is_active", default: true, null: false
-    t.text "introduction", null: false
+    t.text "introduction"
     t.string "reset_password_token"
     t.datetime "reset_password_sent_at"
     t.datetime "remember_created_at"
