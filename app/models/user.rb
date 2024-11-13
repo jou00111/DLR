@@ -9,7 +9,6 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   #バリデーション
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true, presence: true
-  validates :introduction, presence: true
   validates :specify_field, presence: true
   validates :is_active, inclusion: { in: [true, false] }
   validates :email, presence:true
