@@ -8,4 +8,4 @@
 <%=link_to "編集する", users_information_edit_path, class:"btn btn-prymary w-25" %>
 <%=link_to "退会する", users_confilm_path, class:"btn btn-secondary w-25" %>
 <p>自身の投稿一覧</p>
-<%= render 'index', posts: @posts %>
+<%= render 'public/users/mypost', posts: @posts %>

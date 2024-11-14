@@ -4,6 +4,12 @@
       <h4 class="font-weight-bold my-4 bg-light">投稿一覧</h4>
     </div>
     <div class="col-md-7 offset-md-1"></div>
+    <div class="col-md-2">
+      <%= link_to new_post_path do %>
+        <i class="fa-solid fa-plus"></i>
+      <% end %>
+    </div>
+  </div>
 
   <div class="row">
     <div class="col">
@@ -18,16 +24,16 @@
           </tr>
         </thead>
 
-        <% users.each do |user| %>
+        <% posts.each do |post| %>
 
         <tbody>
           <tr>
-            <td><%= user.id %></td>
-            <td><%= link_to user_path(user.id) do %>
-                <%= user.name %>
+            <td><%= post.id %></td>
+            <td><%= link_to post_path(post.id) do %>
+                <%= post.user.name %>
                 <% end %></td>
-            <td><%= user.specify_field %></td>
-            <td><%= user.introduction %></td>
+            <td><%= post.title %></td>
+            <td><%= post.body %></td>
           </tr>
         </tbody>
 
