@@ -1,0 +1,17 @@
+<div id="star_<%= post_comment.id %>"></div>
+<script>
+document.addEventListener('turbolinks:load', function() {
+  let elem = document.querySelector('#post_raty');
+  if (!elem) return;
+
+  elem.innerHTML = "";
+  let opt = {
+    starOn: "<%= asset_path('star-on.png') %>",
+    starOff: "<%= asset_path('star-off.png') %>",
+    starHalf: "<%= asset_path('star-half.png') %>",
+    scoreName: 'post_comment[star]',
+  };
+  $(elem).raty(opt);
+});
+
+  </script>

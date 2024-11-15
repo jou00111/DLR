@@ -35,14 +35,14 @@ class Public::PostCommentsController < ApplicationController
   def destroy
     @post_comment = PostComment.find(params[:id])
     @post_comment.delete
-    redirect_to posts_path
+    redirect_to post_path(@post)
   end
 
   private
   #許可するパラメーター
 
   def post_comment_params
-    params.require(:post_comment).permit(:title, :body,)
+    params.require(:post_comment).permit(:title, :body, :star)
   end
 
 end

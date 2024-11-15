@@ -46,7 +46,6 @@ ActiveRecord::Schema.define(version: 2024_11_09_045552) do
     t.string "star", null: false
     t.string "title", null: false
     t.string "body", null: false
-    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

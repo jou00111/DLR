@@ -5,25 +5,7 @@
     <div class="col-mg-2">
       <h4 class="font-weight-bold my-4 bg-light">コメント新規投稿</h4>
     </div>
-  </div>
-
-  <div class="row">
-    <div class="col">
-
-      <%= form_with model: @post_comment, url: post_post_comments_path(@post) do |f| %>
-        <table class='mx-auto'>
-          <tr>
-            <td>題名</td>
-            <td><%= f.text_field :title %></td>
-          </tr>
-          <tr>
-            <td>本文</td>
-            <td><%= f.text_area :body %></td>
-          </tr>
-        </table>
-        <%= f.submit "送信する" %>
-      <% end %>
-    </div>
+    <%= render 'public/post_comments/form', post_comment: @post_comment %>
   </div>
 </div>
 
