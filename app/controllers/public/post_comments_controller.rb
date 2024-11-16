@@ -8,9 +8,14 @@ class Public::PostCommentsController < ApplicationController
   #投稿処理
   def create
     @post = Post.find(params[:post_id])
-    @post_comment = current_user.post_comments.new(post_comment_params)
-    @post_comment.save
-    redirect_to post_path(@post)
+    @post_comment = @post.post_comments.new(post_comment_params)
+    @post_comment.user = current_user
+    if @post_comment.save
+      redirect_to post_path(@post), notice: "コメントを投稿しました"
+    else
+      Rails.logger.error "Failed to save PostComment: #{@post_comment.errors.full_messages}"
+      render :new, status: :unprocessable_entity
+    end
   end
 
   #詳細画面

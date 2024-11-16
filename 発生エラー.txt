@@ -35,3 +35,52 @@ expected file /home/ec2-user/environment/DLR/app/controllers/homes_controller.rb
 
 コントローラーが見つからない場合に発生しやすい
 →今回の場合publicフォルダ内にコントローラーがなかったためはっせい
+
+
+
+
+Uncaught TypeError: $(...).raty is not a function
+    at HTMLDocument.<anonymous> (<anonymous>:13:11)
+    at ./node_modules/turbolinks/dist/turbolinks.js.e.dispatch (turbolinks.js:68:1)
+    at r.notifyApplicationAfterPageLoad (turbolinks.js:885:1)
+    at r.visitCompleted (turbolinks.js:898:1)
+    at r.complete (turbolinks.js:676:1)
+    at r.<anonymous> (turbolinks.js:706:1)
+    at turbolinks.js:755:1
+
+ratyがうまく作動していないエラーが発生した。
+bin/webpack で試したが、あまり効果はない
+import Raty from "raty.js"; // Raty.jsのインポート
+bootstrapが消えた....おそらくjqaryの問題
+
+解決はしたが、別手順としてjavascriptに追加
+
+
+
+
+
+> Booting Puma
+=> Rails 6.1.7.10 application starting in development 
+=> Run bin/rails server --help for more startup options
+A server is already running. Check /home/ec2-user/environment/DLR/tmp/pids/server.pid.
+
+pumaがすでに起動していて　rails s　でサーバーが表示できなくなった。
+→$ lsof -i :3000 でidを確認後
+kill -9  id
+bin/rails server 
+で解決
+
+
+
+コメント送信を行ったが、テーブルに保存されない
+
+Started POST "/posts/1/post_comments" for 127.0.0.1 at 2024-11-15 11:54:29 +0000
+Processing by Public::PostCommentsController#create as HTML
+  Parameters: {"authenticity_token"=>"[FILTERED]", "post_comment"=>{"title"=>"dd", "body"=>"dd", "star"=>"3"}, "commit"=>"Create Post comment", "post_id"=>"1"}
+  Post Load (0.1ms)  SELECT "posts".* FROM "posts" WHERE "posts"."id" = ? LIMIT ?  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/public/post_comments_controller.rb:10:in `create'
+  User Load (0.1ms)  SELECT "users".* FROM "users" WHERE "users"."id" = ? ORDER BY "users"."id" ASC LIMIT ?  [["id", 1], ["LIMIT", 1]]
+  ↳ app/controllers/public/post_comments_controller.rb:11:in `create'
+Redirected to http://localhost:3000/posts/1
+Failed to save PostComment: ["Post must exist"]
+Completed 302 Found in 9ms (ActiveRecord: 0.2ms | Allocations: 4681)

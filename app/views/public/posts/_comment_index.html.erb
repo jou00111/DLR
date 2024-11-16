@@ -24,7 +24,7 @@
         <tbody>
           <tr>
             <td><%= post_comment.id %></td>
-            <td><%= link_to post_comment_path(post_comment.id) do %>
+            <td><%= link_to post_post_comment_path(post_comment.id) do %>
                 <%= post_comment.user.name %>
                 <% end %></td>
             <td><%= post_comment.title %></td>

@@ -4,7 +4,10 @@ Rails.application.routes.draw do
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
-
+#管理者ログイン機能
+devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  sessions: "admin/sessions"
+}
 
 
   #public側機能
@@ -38,6 +41,15 @@ Rails.application.routes.draw do
     #ユーザー基本機能
     resources :users, only:[:show]
     #検索機能
+    get "search" => "searches#search"
+  end
+
+  namespace :admin do
+    resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy]do
+      resources :post_comments, only: [:new, :show, :create, :edit, :update, :destroy]
+    end 
+    resources :users, only: [:index, :show, :edit, :update]
+    get "/admin" => "homes#top"
     get "search" => "searches#search"
   end
 
