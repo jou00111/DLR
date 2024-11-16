@@ -9,10 +9,22 @@ class User < ApplicationRecord
   has_many :post_comments, dependent: :destroy
   #バリデーション
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true, presence: true
-  validates :introduction, presence: true
   validates :specify_field, presence: true
   validates :is_active, inclusion: { in: [true, false] }
   validates :email, presence:true
+
+  #検索条件(ユーザー側)
+  def self.search_for(word, search)
+    if search == 'perfect'
+      User.where(name: word)
+    elsif search == 'forward'
+      User.where('name LIKE ?', word + '%')
+    elsif search == 'backward'
+      User.where('name LIKE ?','%'+ word)
+    else
+      User.where('name LIKE ?','%' + word + '%')
+    end
+  end
 
   #デフォルトの画像設定
   def get_profile_image

@@ -9,6 +9,7 @@
     "bootstrap": "4.6.2",
     "jquery": "^3.7.1",
     "popper.js": "^1.16.1",
+    "raty-js": "2.9.0",
     "turbolinks": "^5.2.0"
   },
   "version": "0.1.0",
