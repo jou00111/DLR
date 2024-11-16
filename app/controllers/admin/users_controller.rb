@@ -1,14 +1,14 @@
 class Admin::UsersController < ApplicationController
-  class Public::UsersController < ApplicationController
     
     # ユーザー詳細画面
     def show
       @user = User.find(params[:id])
+      @posts = @user.posts
     end
 
     # ユーザー詳細画面
     def index
-      @user = User.all
+      @users = User.all
     end
 
     # 編集画面
@@ -30,4 +30,5 @@ class Admin::UsersController < ApplicationController
     # 会員の許可するパラメータ
     def user_params
       permitted_params = params.require(:user).permit(:name, :password, :password_confirmation, :current_password, :specify_field, :introduction, :is_active, :profile_image, :email )
-end
+    end
+  end

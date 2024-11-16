@@ -49,7 +49,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
       resources :post_comments, only: [:new, :show, :create, :edit, :update, :destroy]
     end 
     resources :users, only: [:index, :show, :edit, :update]
-    get "/admin" => "homes#top"
+    get "/top" => "homes#top"
     get "search" => "searches#search"
   end
 

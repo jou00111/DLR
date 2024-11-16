@@ -84,3 +84,6 @@ Processing by Public::PostCommentsController#create as HTML
 Redirected to http://localhost:3000/posts/1
 Failed to save PostComment: ["Post must exist"]
 Completed 302 Found in 9ms (ActiveRecord: 0.2ms | Allocations: 4681)
+
+コントローラーとモデルでの関連付けを要確認
+解決　→ユーザー側の関連付けを忘れていた

@@ -1,2 +1,21 @@
-<h1>Homes#top</h1>
-<p>Find me in app/views/homes/top.html.erb</p>
+<div class="container mt-5">
+  <h3 class="text-center mb-4"><strong>新着投稿</strong></h3>
+  <div class="row">
+    <% @posts.each do |post| %>
+      <div class="col-md-4 mb-4">
+        <div class="card shadow-sm">
+          <% if post.image.attached? %>
+            <%= image_tag post.image, class: 'card-img-top', alt: post.title %>
+          <% else %>
+            <%= image_tag 'no_image.jpg', class: 'card-img-top', alt: 'No Image' %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text text-truncate" style="max-height: 3rem;"><%= post.body %></p>
+            <%= link_to '詳細を見る', post_path(post), class: 'btn btn-primary btn-sm' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
