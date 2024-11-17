@@ -1,8 +1,9 @@
 <div class="container mt-5">
   <h3 class="text-center mb-4"><strong>新着投稿</strong></h3>
-  <div class="row">
+  <!-- Owl Carouselスライダー -->
+  <div class="owl-carousel owl-theme">
     <% @posts.each do |post| %>
-      <div class="col-md-4 mb-4">
+      <div class="item">
         <div class="card shadow-sm">
           <% if post.image.attached? %>
             <%= image_tag post.image, class: 'card-img-top', alt: post.title %>
@@ -19,3 +20,22 @@
     <% end %>
   </div>
 </div>
+
+<script>
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+})
+</script>

@@ -12,7 +12,10 @@ import "channels";
 import "jquery";
 import "popper.js";
 import "bootstrap";
+
 import "../stylesheets/application";
+
+
 
 // raty.js関連
 import Raty from "raty.js";
@@ -32,3 +35,5 @@ import "./raty_initializer";
 Rails.start();
 Turbolinks.start();
 ActiveStorage.start();
+
+

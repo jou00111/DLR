@@ -4136,7 +4136,7 @@ jest-worker@^26.5.0:
 
 jquery@^3.3.1, jquery@^3.7.1:
   version "3.7.1"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.7.1.tgz#083ef98927c9a6a74d05a6af02806566d16274de"
+  resolved "https://registry.npmjs.org/jquery/-/jquery-3.7.1.tgz"
   integrity sha512-m4avr8yL8kmFN8psrbFFFmB/If14iN5o9nw/NgnnM+kybDJpRsAynV2BsfpTYrTRysYUdADVD7CkUUizgkpLfg==
 
 js-tokens@^4.0.0:
@@ -5104,7 +5104,7 @@ pnp-webpack-plugin@^1.7.0:
 
 popper.js@^1.16.1:
   version "1.16.1"
-  resolved "https://registry.npmjs.org/popper.js/-/popper.js-1.16.1.tgz"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.16.1.tgz#2a223cb3dc7b6213d740e40372be40de43e65b1b"
   integrity sha512-Wb4p1J4zyFTbM+u6WuO4XstYx4Ky9Cewe4DWrel7B0w6VVICvPwdOpotjzcf6eD8TsckVnIMNONQyPIUFOUbCQ==
 
 portfinder@^1.0.26:
@@ -5898,7 +5898,7 @@ range-parser@^1.2.1, range-parser@~1.2.1:
 
 raty-js@2.9.0:
   version "2.9.0"
-  resolved "https://registry.yarnpkg.com/raty-js/-/raty-js-2.9.0.tgz#63076c3e17d6d9824d3998fe0a5d4625022db6fb"
+  resolved "https://registry.npmjs.org/raty-js/-/raty-js-2.9.0.tgz"
   integrity sha512-sh4w6Zebi3JGmhdc6KEPVXZVkgE75j3F/0aA/CV6uq4I06AS82y8p6Kpiwh1cnmZiWbjeARv/4XQKpio68X8RA==
   dependencies:
     jquery "^3.3.1"

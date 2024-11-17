@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  scope :visible, -> { where(is_active: true) } # 公開投稿を取得
   #アソシエーション
   has_many :post_comments, dependent: :destroy
   belongs_to :user
