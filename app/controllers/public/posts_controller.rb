@@ -32,7 +32,6 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
-    @post_comments = @post.post_comments
   end
   #投稿一覧
   def index

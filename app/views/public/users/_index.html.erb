@@ -1,7 +1,7 @@
 <div class="container">
   <div class="row">
     <div class="col-md-2">
-      <h4 class="font-weight-bold my-4 bg-light">ユーザー一覧</h4>
+      <h4 class="font-weight-bold my-4 bg-light">投稿一覧</h4>
     </div>
     <div class="col-md-7 offset-md-1"></div>
 
@@ -13,21 +13,21 @@
           <tr class="bg-light">
             <th>ID</th>
             <th>投稿者名</th>
-            <th>得意分野</th>
+            <th>題名</th>
             <th>本文</th>
           </tr>
         </thead>
 
-        <% users.each do |user| %>
+        <% posts.each do |post| %>
 
         <tbody>
           <tr>
-            <td><%= user.id %></td>
-            <td><%= link_to user_path(user.id) do %>
-                <%= user.name %>
+            <td><%= post.id %></td>
+            <td><%= link_to post_path(post.id) do %>
+                <%= post.user.name %>
                 <% end %></td>
-            <td><%= user.specify_field %></td>
-            <td><%= user.introduction %></td>
+            <td><%= post.title %></td>
+            <td><%= post.body %></td>
           </tr>
         </tbody>
 

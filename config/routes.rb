@@ -4,20 +4,15 @@ Rails.application.routes.draw do
   registrations: "public/registrations",
   sessions: 'public/sessions'
 }
-#管理者ログイン機能
-devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: "admin/sessions"
-}
 
+  #ホーム画面
+  root to: "homes#top"
+
+  #アバウトページ
+  get "/about" => "homes#about", as: "about"
 
   #public側機能
   scope module: :public do
-
-      #ホーム画面
-    root to: "homes#top"
-
-    #アバウトページ
-    get "/about" => "homes#about", as: "about"
 
     #マイページ
     get  '/mypage' => 'users#mypage', as: "mypage"
@@ -35,22 +30,10 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     patch '/users/information' => 'users#update'
 
     #投稿各機能
-    resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy]do
-      resources :post_comments, only: [:new, :show, :create, :edit, :update, :destroy]
-    end  
+    resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy]
+
     #ユーザー基本機能
     resources :users, only:[:show]
-    #検索機能
-    get "search" => "searches#search"
-  end
-
-  namespace :admin do
-    resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy]do
-      resources :post_comments, only: [:new, :show, :create, :edit, :update, :destroy]
-    end 
-    resources :users, only: [:index, :show, :edit, :update]
-    get "/top" => "homes#top"
-    get "search" => "searches#search"
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
