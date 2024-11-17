@@ -1,0 +1,41 @@
+<div class="container mt-5">
+  <h3 class="text-center mb-4"><strong>新着投稿</strong></h3>
+  <!-- Owl Carouselスライダー -->
+  <div class="owl-carousel owl-theme">
+    <% @posts.each do |post| %>
+      <div class="item">
+        <div class="card shadow-sm">
+          <% if post.image.attached? %>
+            <%= image_tag post.image, class: 'card-img-top', alt: post.title %>
+          <% else %>
+            <%= image_tag 'no_image.jpg', class: 'card-img-top', alt: 'No Image' %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= post.title %></h5>
+            <p class="card-text text-truncate" style="max-height: 3rem;"><%= post.body %></p>
+            <%= link_to '詳細を見る', post_path(post), class: 'btn btn-primary btn-sm' %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+$('.owl-carousel').owlCarousel({
+    loop:true,
+    margin:10,
+    nav:true,
+    responsive:{
+        0:{
+            items:1
+        },
+        600:{
+            items:3
+        },
+        1000:{
+            items:5
+        }
+    }
+})
+</script>

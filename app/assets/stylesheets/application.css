@@ -13,3 +13,10 @@
  *= require_tree .
  *= require_self
  */
+ *= require owl.carousel
+ *= require owl.theme
+
+ .card-img-top {
+  object-fit: cover;
+  height: 200px;
+}

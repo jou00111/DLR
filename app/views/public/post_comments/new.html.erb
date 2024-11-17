@@ -1,0 +1,11 @@
+
+  <%= render "layouts/error", obj:@post_comment %>
+<div class="container">
+  <div class="row">
+    <div class="col-mg-2">
+      <h4 class="font-weight-bold my-4 bg-light">コメント新規投稿</h4>
+    </div>
+    <%= render 'public/post_comments/form', post_comment: @post_comment %>
+  </div>
+</div>
+
