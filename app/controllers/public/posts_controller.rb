@@ -32,15 +32,10 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @user = @post.user
-    @post_comments = @post.post_comments
-     #非公開状態の制限
-    unless @post.is_active || @post.user == current_user
-      redirect_to posts_path, alert: "この投稿は非公開です。"
-    end
   end
   #投稿一覧
   def index
-    @posts = Post.visible.order(created_at: :desc)
+    @posts = Post.all
   end
   #投稿削除処理
   def destroy
@@ -57,7 +52,6 @@ class Public::PostsController < ApplicationController
       whitelisted[:is_active] = ActiveModel::Type::Boolean.new.cast(whitelisted[:is_active])
     end
   end
-  #ユーザー確認
   def is_matching_login_user
 
     post = Post.find(params[:id])
@@ -68,4 +62,5 @@ class Public::PostsController < ApplicationController
 
    end
   end
+
 end
