@@ -11,6 +11,10 @@ class User < ApplicationRecord
   # アソシエーション
   has_many :posts, dependent: :destroy
   has_many :post_comments, dependent: :destroy
+  has_many :chats, dependent: :destroy
+  has_many :chat_rooms, dependent: :destroy
+  
+  
 
   # バリデーション
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true, presence: true

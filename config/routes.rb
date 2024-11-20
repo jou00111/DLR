@@ -37,7 +37,9 @@ Rails.application.routes.draw do
     #検索機能
     get "search" => "searches#search"
     get "search_tag" => "posts#search_tag"
-  end
+     resources :messages, only: [:create]
+    resources :rooms, only: [:create,:show]
+    end
 
   namespace :admin do
     resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy]do
@@ -47,6 +49,8 @@ Rails.application.routes.draw do
     get "/top" => "homes#top"
     get "search" => "searches#search"
     get "search_tag" => "posts#search_tag"
+    resources :messages, only: [:create]
+    resources :rooms, only: [:create,:show]
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
