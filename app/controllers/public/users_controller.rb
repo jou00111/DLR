@@ -13,6 +13,7 @@ class Public::UsersController < ApplicationController
   # ユーザー詳細画面
   def show
     @user = User.find(params[:id])
+    @posts = @user.posts
   end
 
   # 退会確認画面
@@ -20,13 +21,37 @@ class Public::UsersController < ApplicationController
     @user = current_user
   end
   def update
-    @user = current_user
-    if @user.update(user_params)  # 修正: post_params を渡す
-      redirect_to mypage_path, notice: "You have updated information successfully." # 編集後マイページ画面へ
+  @user = current_user
+  current_password = params[:user][:current_password]
+
+  # 現在のパスワードを確認
+  if params[:user][:change_password] == "1" # パスワード変更フラグがオンの場合
+    # 現在のパスワードを確認
+     if @user.valid_password?(current_password)  # Deviseのメソッドを使用
+      if @user.update(user_params)
+        sign_in(@user, bypass: true)  # bypass: true で再ログイン
+        redirect_to mypage_path, notice: 'プロフィールを更新しました。'
+      else
+        flash.now[:alert] = '更新に失敗しました。'
+        render :edit
+      end
     else
-      render :edit  # 編集失敗時はそのまま
+      flash.now[:alert] = '現在のパスワードが正しくありません。'
+      render :edit
+    end
+  else
+    # パスワードが空の場合、パスワード関連フィールドは無視して更新
+    if @user.update(user_params.except(:password, :password_confirmation, :current_password))
+      redirect_to mypage_path, notice: 'プロフィールを更新しました。'
+    else
+      flash.now[:alert] = '更新に失敗しました。'
+      render :edit
     end
   end
+end
+
+
+
   # 退会処理
   def withdraw
     @user = current_user
@@ -42,19 +67,17 @@ class Public::UsersController < ApplicationController
   def user_params
     permitted_params = params.require(:user).permit(:name, :password, :password_confirmation, :current_password, :specify_field, :introduction, :is_active, :profile_image, :email )
 
-    # パスワードが空の場合は、パスワードフィールドを削除
-    if permitted_params[:password].blank?
-      permitted_params.delete(:password)
-      permitted_params.delete(:password_confirmation)
-    end
-
-    # 現在のパスワードが空の場合は、現在のパスワードフィールドを削除
-    if permitted_params[:current_password].blank?
-      permitted_params.delete(:current_password)
-    end
-
-    permitted_params
+  
+  
+  # パスワード変更がない場合はパスワード関連のフィールドを削除
+  if params[:user][:change_password] != "1" # パスワード変更がない場合
+    permitted_params.delete(:password)
+    permitted_params.delete(:password_confirmation)
+    permitted_params.delete(:current_password)
   end
+
+  permitted_params
+end
 
   # 会員の論理削除、退会済みのアカウントを利用停止
   def reject_user

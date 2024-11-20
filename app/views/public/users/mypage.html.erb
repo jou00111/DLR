@@ -1,11 +1,29 @@
-<h2>マイページ</h2>
-<p>氏名</p>
-<p><%= @user.name %></p>
-<p>紹介文</p>
-<p><%= @user.introduction %></p>
-<p>得意分野</p>
-<p><%= @user.specify_field %></p>
-<%=link_to "編集する", users_information_edit_path, class:"btn btn-prymary w-25" %>
-<%=link_to "退会する", users_confilm_path, class:"btn btn-secondary w-25" %>
-<p>自身の投稿一覧</p>
-<%= render 'index', posts: @posts %>
+<div class="container">
+    <div class="row mb-5">
+        <div class="col text-center">
+          <div class="profile-image">
+          <% if @user.profile_image.attached? %>
+            <%= image_tag @user.profile_image, class: "img-fluid profile-image", alt: "プロフィール画像" %>
+          <% else %>
+            <%= image_tag "/assets/default_profile.jpg"%>
+          <% end %>
+        　</div>
+        </div>
+　　</div>
+    <div class="row">
+        <div class="col mx-auto">
+            <h2>マイページ</h2>
+            <p>氏名</p>
+            <p><%= @user.name %></p>
+            <p>紹介文</p>
+            <p><%= @user.introduction %></p>
+            <p>得意分野</p>
+            <p><%= @user.specify_field %></p>
+            <%=link_to "編集する", users_information_edit_path, class:"btn btn-primary w-25" %>
+            <%=link_to "退会する", users_confilm_path, class:"btn btn-secondary w-25" %>
+        </div>
+    </div>    
+    <div class="row">    
+        <%= render 'public/users/mypost', posts: @posts %>
+    </div>    
+</div>    

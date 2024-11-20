@@ -1,0 +1,33 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-9 mt-5">
+      <h2>投稿一覧（全<%= posts.count %>件）</h2>
+      <div class="row mt-5">
+        <% posts.each do |post| %>
+          <%= link_to post_path(post), class: "col-md-3 text-decoration-none text-dark" do %>
+            <div class="card">
+              <% if post.image.attached? %>
+                <%= image_tag post.image, class: 'card-img-top', alt: post.title %>
+              <% else %>
+                <%= image_tag 'no_image.jpg', class: 'card-img-top', alt: 'No Image' %>
+              <% end %>
+              <div class="card-body">
+                <div class="mb-2">
+                  <%= post.user.name %>
+                </div>
+                <div class="mb-2">
+                  <%= post.title %>
+                </div>
+                <div class="mb-5">
+                  <%= truncate(post.body, length: 100) %> <!-- 投稿内容を100文字まで表示 -->
+                </div>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row justify-content-center pr-5 mr-5">
+  </div>
+</div>

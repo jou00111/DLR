@@ -1,0 +1,76 @@
+
+<% if post.new_record? %>
+  <!--投稿側フォーム-->
+  <div class="col">
+    <%= form_with model: post, url: posts_path do |f| %>
+      <table class='mx-auto'>
+        <tr>
+          <td>画像投稿</td>
+          <td><%= f.file_field :image, multiple: true, accept: "image/*" %></td>
+        </tr>
+        <tr>
+          <td>題名</td>
+          <td><%= f.text_field :title %></td>
+        </tr>
+        <tr>
+          <td>本文</td>
+          <td><%= f.text_area :body %></td>
+        </tr>
+        <tr>
+          <td>タグ</td>
+          <td><%= f.text_field :name,value: @tag_list, class: 'form-control' %></td>
+        </tr>
+        <tr>
+          <td>公開ステータス</td>
+          <td class ="custom-control custom-radio custom-control-inline">
+            　<%= f.radio_button :is_active, true, checked: post.is_active == true, class: 'custom-control-input', id: 'status-active' %>
+              <%= f.label :is_active,'公開', class: 'custom-control-label', for: 'status-active' %>
+          </td>
+          <td class ="custom-control custom-radio custom-control-inline">
+            <%= f.radio_button :is_active, false, checked: post.is_active == false, class: 'custom-control-input', id: 'status-deleted' %>
+            <%= f.label :is_active,'非公開', class: 'custom-control-label', for: 'status-deleted' %>
+          </td>
+        </tr>
+      </table>
+        <div class="text-center"><%= f.submit '新規登録',class: "btn btn-success" %></div>
+    <% end %>
+  </div>
+<% else %>
+  <!--編集側フォーム-->
+  <%= form_with model: @post, url: post_path(@post.id) do |f| %>
+    <table class='mx-auto'>
+      <tr>
+        <td>画像</td>
+        <td><%= f.file_field :image, accept: "image/*" %></td>
+      </tr>
+      <tr>
+        <td>題名</td>
+        <td><%= f.text_field :title %></td>
+      </tr>
+      <tr>
+        <td>説明</td>
+        <td><%= f.text_area :body %></td>
+      </tr>
+      <tr>
+          <td>タグ</td>
+          <td><%= f.text_field :name,value: @tag_list, class: 'form-control' %></td>
+        </tr>
+      <tr>
+        <td>公開ステータス</td>
+        <td>
+          <div class="custom-control custom-radio custom-control-inline">
+            <%= f.radio_button :is_active, :true %>
+            <%= f.label :is_active, '公開', for: 'is_active-on-sale' %>
+          </div>
+          <div class="custom-control custom-radio custom-control-inline">
+            <%= f.radio_button :is_active, :false %>
+            <%= f.label :is_active, '非公開', for: 'is_active-off-sale' %>
+          </div>
+        </td>
+      </tr>
+    </table>
+
+      <div class="text-center"><%= f.submit '変更を保存',class: "btn btn-success" %></div>
+
+  <% end %>
+<% end %>

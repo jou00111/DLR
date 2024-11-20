@@ -34,6 +34,19 @@ Rails.application.routes.draw do
 
     #ユーザー基本機能
     resources :users, only:[:show]
+    #検索機能
+    get "search" => "searches#search"
+    get "search_tag" => "posts#search_tag"
+  end
+
+  namespace :admin do
+    resources :posts, only:[:index, :show, :new, :create, :edit, :update, :destroy]do
+      resources :post_comments, only: [:new, :show, :create, :edit, :update, :destroy]
+    end 
+    resources :users, only: [:index, :show, :edit, :update]
+    get "/top" => "homes#top"
+    get "search" => "searches#search"
+    get "search_tag" => "posts#search_tag"
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

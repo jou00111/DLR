@@ -1,3 +1,48 @@
+<<<<<<< HEAD
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>投稿詳細</h2>
+      <!--画像の有無で表示が変わる-->
+      <% if @post.image.attached? %>
+        <div class="image-frame">
+          <%= image_tag @post.image %>
+        </div>
+      <% end %>
+      <div class="name">
+        <p>氏名</p>
+        <p><%= @post.user.name %>
+      </div>
+      <div class="title">
+        <p>題名</p>
+        <p><%= @post.title %>
+      </div>
+      <div class="body">
+        <p>本文</p>
+        <p><%= @post.body %>
+      </div>
+      <div>
+        <!-- タグリスト -->
+          <% @post.tags.each do |tag| %>
+            <i class="fa-sharp fa-solid fa-tag"></i>
+            <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
+          <% end %>
+      </div>
+      <div class="button1">
+        <%= link_to "一覧へ", posts_path, class: "btn btn-primary"%>
+        <%= link_to "コメントする", new_post_post_comment_path(@post), class: "btn btn-orange" %>
+      </div>
+      <div class="button2 my-2">
+        <% if @user == current_user %>
+          <%= link_to "編集する", edit_post_path(@post), class: "btn btn-success" %>
+          <%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+ </div>
+      <%= render "public/posts/comment_index", post_comments: @post_comments, post: @post %>
+</div>
+=======
 <h2>投稿詳細</h2>
 #画像の有無で表示が変わる
 <% if @post.image.attached? %>
@@ -19,3 +64,4 @@
   <%= link_to "編集する", edit_post_path(@post) %>
   <%= link_to "削除", post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？" %>
 <% end %>
+>>>>>>> develop

@@ -1,57 +1,72 @@
-<%= render "layouts/error", obj:@user %>
-<h2>ユーザー情報編集</h2>
-<%= form_with model: @user, url:users_information_path,method: :patch do |f| %> 
-
-<div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :specify_field %><br />
-    <%= f.text_field :specify_field %>
-  </div>
-
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
-
-  <div class="field">
-  <%= f.check_box :change_password, {id: 'change_password_toggle'} %>
-  <%= f.label :change_password, "パスワードを変更する" %>
-</div>
-
-<div id="password_fields" style="display: none;">
-  <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-    <% if @minimum_password_length %>
-      <br />
-      <em><%= @minimum_password_length %> characters minimum</em>
-    <% end %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-    <%= f.password_field :current_password, autocomplete: "current-password" %>
-  </div>
-</div>
-
-<script>
-  // Checkボックスの切り替えによってパスワードフィールドを表示・非表示にする
-  document.getElementById('change_password_toggle').addEventListener('change', function() {
-    const passwordFields = document.getElementById('password_fields');
-    passwordFields.style.display = this.checked ? 'block' : 'none';
-  });
-</script>
-
-  <div class="actions">
-    <%= f.submit "編集する" %>
-  </div>
-<% end %>
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <%= render "layouts/error", obj:@user %>
+        <h2>ユーザー情報編集</h2>
+        <%= form_with model: @user, url:users_information_path,method: :patch do |f| %> 
+        <div class="form-group">
+          <%= f.label :profile_image, "プロフィール画像" %>
+          <%= f.file_field :profile_image, class: "form-control" %>
+        </div>
+        
+        <div class="field">
+            <%= f.label :name %><br />
+            <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+          </div>
+        
+          <div class="field">
+            <%= f.label :specify_field %><br />
+            <%= f.text_field :specify_field %>
+          </div>
+          
+          <div class="field">
+            <%= f.label :introduction %><br />
+            <%= f.text_area :introduction %>
+          </div>
+        
+          <div class="field">
+            <%= f.label :email %><br />
+            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+          </div>
+        
+          <div class="field">
+          <%= f.check_box :change_password, {id: 'change_password_toggle'} %>
+          <%= f.label :change_password, "パスワードを変更する" %>
+        </div>
+        
+        <div id="password_fields" style="display: none;">
+          <div class="field">
+            <%= f.label :password %><br />
+            <%= f.password_field :password, autocomplete: "new-password" %>
+            <% if @minimum_password_length %>
+              <br />
+              <em><%= @minimum_password_length %> characters minimum</em>
+            <% end %>
+          </div>
+        
+          <div class="field">
+            <%= f.label :password_confirmation %><br />
+            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+          </div>
+        
+          <div class="field">
+            <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
+            <%= f.password_field :current_password, autocomplete: "current-password" %>
+          </div>
+        </div>
+        
+        <script>
+          // Checkボックスの切り替えによってパスワードフィールドを表示・非表示にする
+          document.getElementById('change_password_toggle').addEventListener('change', function() {
+            const passwordFields = document.getElementById('password_fields');
+            passwordFields.style.display = this.checked ? 'block' : 'none';
+          });
+        </script>
+        
+          <div class="actions">
+            <%= f.submit "編集する" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>  
