@@ -1,45 +1,50 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
-      <h4 class="font-weight-bold my-4 bg-light">投稿一覧</h4>
-    </div>
-    <div class="col-md-7 offset-md-1"></div>
-    <div class="col-md-2">
-      <%= link_to new_post_path do %>
-        <i class="fa-solid fa-plus"></i>
+    <div class="col mt-5">
+      <h2>投稿一覧（表示数<%= posts.count %>件）</h2>
+      <!-- タグの一覧（投稿全体でのタグ一覧） -->
+      <% tag_list.each do |list| %>
+        <i class="fa-sharp fa-solid fa-tag"></i>
+        <%= link_to list.name, search_tag_path(tag_id: list.id) %>
+        <%= "(#{list.post_tags.count})" %>
       <% end %>
-    </div>
-  </div>
 
-  <div class="row">
-    <div class="col">
-
-      <table class='table mx-auto my-5 w-75'>
-        <thead>
-          <tr class="bg-light">
-            <th>ID</th>
-            <th>投稿者名</th>
-            <th>題名</th>
-            <th>本文</th>
-          </tr>
-        </thead>
-
+      <div class="row mt-5">
         <% posts.each do |post| %>
+          <!-- 横並び4つを実現 -->
+          <div class="col-md-3 d-flex align-items-stretch mb-4">
+            <div class="card mx-auto">
+              <%= link_to post_path(post), class: "col text-decoration-none text-dark" do %>
+                <% if post.image.attached? %>
+                  <%= image_tag post.image, class: 'card-img-top', alt: post.title %>
+                <% else %>
+                  <%= image_tag 'no_image.jpg', class: 'card-img-top', alt: 'No Image' %>
+                <% end %>
+                <div class="card-body">
+                  <div class="mb-2">
+                    <%= post.user.name %>
+                  </div>
+                  <div class="mb-2">
+                    <%= post.title %>
+                  </div>
+                  <div class="mb-5">
+                    <%= truncate(post.body, length: 100) %> <!-- 投稿内容を100文字まで表示 -->
+                  </div>
 
-        <tbody>
-          <tr>
-            <td><%= post.id %></td>
-            <td><%= link_to post_path(post.id) do %>
-                <%= post.user.name %>
-                <% end %></td>
-            <td><%= post.title %></td>
-            <td><%= post.body %></td>
-          </tr>
-        </tbody>
-
+                  <!-- 投稿ごとのタグ一覧 -->
+                  <div>
+                    <% post.tags.each do |tag| %>
+                      <i class="fa-sharp fa-solid fa-tag"></i>
+                      <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>  
         <% end %>
-        </tbody>
-      </table>
+      </div>
     </div>
   </div>
+  <%= paginate @posts %>
 </div>

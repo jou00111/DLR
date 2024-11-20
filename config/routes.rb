@@ -42,6 +42,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :users, only:[:show]
     #検索機能
     get "search" => "searches#search"
+    get "search_tag" => "posts#search_tag"
   end
 
   namespace :admin do
@@ -51,6 +52,7 @@ devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
     resources :users, only: [:index, :show, :edit, :update]
     get "/top" => "homes#top"
     get "search" => "searches#search"
+    get "search_tag" => "posts#search_tag"
   end
 
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

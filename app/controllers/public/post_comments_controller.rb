@@ -20,7 +20,8 @@ class Public::PostCommentsController < ApplicationController
 
   #詳細画面
   def show
-    @post_comment = PostComment.find(params[:id])
+    @post = Post.find(params[:post_id])
+    @post_comments = @post.post_comments
   end
 
   #編集画面

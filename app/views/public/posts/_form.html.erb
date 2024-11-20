@@ -6,7 +6,7 @@
       <table class='mx-auto'>
         <tr>
           <td>画像投稿</td>
-          <td><%= f.file_field :image, accept: "image/*" %></td>
+          <td><%= f.file_field :image, multiple: true, accept: "image/*" %></td>
         </tr>
         <tr>
           <td>題名</td>
@@ -15,6 +15,10 @@
         <tr>
           <td>本文</td>
           <td><%= f.text_area :body %></td>
+        </tr>
+        <tr>
+          <td>タグ</td>
+          <td><%= f.text_field :name,value: @tag_list, class: 'form-control' %></td>
         </tr>
         <tr>
           <td>公開ステータス</td>
@@ -47,6 +51,10 @@
         <td>説明</td>
         <td><%= f.text_area :body %></td>
       </tr>
+      <tr>
+          <td>タグ</td>
+          <td><%= f.text_field :name,value: @tag_list, class: 'form-control' %></td>
+        </tr>
       <tr>
         <td>公開ステータス</td>
         <td>
