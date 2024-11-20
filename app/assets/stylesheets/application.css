@@ -13,6 +13,7 @@
  *= require_tree .
  *= require_self
  */
+<<<<<<< HEAD
   .card-img-top {
   object-fit: cover;
   height: 200px;
@@ -30,3 +31,5 @@
   object-fit: cover; /* 縦横比を維持しつつ、指定したサイズに収める */
   border-radius: 8px; /* 角丸を追加したい場合 */
 }
+=======
+>>>>>>> develop

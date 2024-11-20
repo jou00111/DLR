@@ -80,7 +80,6 @@ class Public::PostsController < ApplicationController
       whitelisted[:is_active] = ActiveModel::Type::Boolean.new.cast(whitelisted[:is_active])
     end
   end
-  #ユーザー確認
   def is_matching_login_user
 
     post = Post.find(params[:id])
@@ -91,4 +90,5 @@ class Public::PostsController < ApplicationController
 
    end
   end
+
 end

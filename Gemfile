@@ -64,11 +64,7 @@ end
 gem "net-smtp"
 gem "net-pop"
 gem "net-imap"
-#devise の導入
+
 gem 'devise'
 
 gem 'kaminari','~> 1.2.1'
-
-gem 'jquery-rails'
-#owl carousel の導入
-gem 'owlcarousel-rails'
