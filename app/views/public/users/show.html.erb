@@ -20,6 +20,7 @@
             <p><%= @user.introduction %></p>
             <p>得意分野</p>
             <p><%= @user.specify_field %></p>
+            <%= link_to 'chatを始める', chat_path(@user.id), class: "ml-3" %>
         </div>
     </div>    
     <div class="row">    

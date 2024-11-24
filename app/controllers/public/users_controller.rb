@@ -1,9 +1,9 @@
 class Public::UsersController < ApplicationController
   # マイページ
   def mypage
-    @user = current_user
-    @posts = @user.posts
-  end
+  @user = current_user
+  @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(8) # ページネーションを設定
+end
 
   # 編集画面
   def edit
@@ -13,9 +13,9 @@ class Public::UsersController < ApplicationController
   # ユーザー詳細画面
   def show
     @user = User.find(params[:id])
-    @posts = @user.posts
-    @currentUserEntry=Entry.where(user_id: current_user.id)
-    @userEntry=Entry.where(user_id: @user.id)
+   @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(8)
+   @currentUserEntry=ChatRoom.where(user_id: current_user.id)
+    @userEntry=ChatRoom.where(user_id: @user.id)
     if @user.id == current_user.id
     else
       @currentUserEntry.each do |cu|
@@ -29,11 +29,10 @@ class Public::UsersController < ApplicationController
       if @isRoom
       else
         @room = Room.new
-        @entry = Entry.new
+        @entry = ChatRoom.new
       end
     end
   end
-  
   # 退会確認画面
   def unsubscribe
     @user = current_user

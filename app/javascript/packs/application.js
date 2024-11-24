@@ -13,6 +13,21 @@ import "popper.js";
 import "bootstrap";
 import "../stylesheets/application";
 
-Rails.start()
-Turbolinks.start()
-ActiveStorage.start()
+// raty.js関連
+import Raty from "raty.js";
+
+// RatyをjQueryのプラグインとして登録
+$.fn.raty = function (options) {
+  return this.each(function () {
+    const raty = new Raty(this, options);
+    raty.init();
+  });
+};
+
+// Ratyの初期化スクリプト
+import "./raty_initializer";
+
+// Railsの基本機能
+Rails.start();
+Turbolinks.start();
+ActiveStorage.start();

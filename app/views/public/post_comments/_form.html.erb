@@ -1,0 +1,69 @@
+<% if post_comment.new_record? %>
+  <h3 class="text-center mb-4"><strong>コメント投稿</strong></h3>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= form_with model: @post_comment, url: post_post_comments_path(@post), class: "bg-light p-4 rounded shadow-sm" do |f| %>
+        
+        <!-- タイトル入力 -->
+        <div class="form-group">
+          <%= f.label :title, class: 'font-weight-bold' %>
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
+        
+        <!-- 本文入力 -->
+        <div class="form-group">
+          <%= f.label :body, class: 'font-weight-bold' %>
+          <%= f.text_area :body, class: 'form-control' %>
+        </div>
+
+        <!-- 星評価 -->
+        <div class="form-group" id="star">
+          <%= f.label :star, class: 'font-weight-bold' %>
+          <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+          <div id="post_raty"></div>
+        </div>
+
+        <!-- 提出ボタン -->
+        <div class="form-group text-center">
+          <%= f.submit 'コメントを投稿', class: 'btn btn-success btn-block' %>
+        </div>
+        
+      <% end %>
+    </div>
+  </div>
+</div>
+<% else %>
+  <h3 class="text-center mb-4"><strong>コメント編集</strong></h3>
+  <div class="row justify-content-center">
+    <div class="col-md-8">
+      <%= form_with model: @post_comment, url: post_post_comment_path(@post), class: "bg-light p-4 rounded shadow-sm" do |f| %>
+        
+        <!-- タイトル入力 -->
+        <div class="form-group">
+          <%= f.label :title, class: 'font-weight-bold' %>
+          <%= f.text_field :title, class: 'form-control' %>
+        </div>
+        
+        <!-- 本文入力 -->
+        <div class="form-group">
+          <%= f.label :body, class: 'font-weight-bold' %>
+          <%= f.text_area :body, class: 'form-control' %>
+        </div>
+
+        <!-- 星評価 -->
+        <div class="form-group" id="star">
+          <%= f.label :star, class: 'font-weight-bold' %>
+          <%= f.hidden_field :star, id: :review_star, class: 'form-control' %>
+          <div id="post_raty"></div>
+        </div>
+
+        <!-- 提出ボタン -->
+        <div class="form-group text-center">
+          <%= f.submit 'コメントを編集', class: 'btn btn-success btn-block' %>
+        </div>
+        
+      <% end %>
+    </div>
+  </div>
+</div>
+<% end %>

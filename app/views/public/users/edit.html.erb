@@ -1,33 +1,41 @@
-<div class="container">
-    <div class="row">
-      <div class="col">
-        <%= render "layouts/error", obj:@user %>
-        <h2>ユーザー情報編集</h2>
-        <%= form_with model: @user, url:users_information_path,method: :patch do |f| %> 
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <%= render "layouts/error", obj: @user %>
+
+      <h2 class="text-center mb-4">ユーザー情報編集</h2>
+
+      <%= form_with model: @user, url: users_information_path, method: :patch do |f| %> 
+        <!-- プロフィール画像 -->
         <div class="form-group">
           <%= f.label :profile_image, "プロフィール画像" %>
-          <%= f.file_field :profile_image, class: "form-control" %>
+          <%= f.file_field :profile_image, class: "form-control-file" %>
         </div>
-        
-        <div class="field">
-            <%= f.label :name %><br />
-            <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
-          </div>
-        
-          <div class="field">
-            <%= f.label :specify_field %><br />
-            <%= f.text_field :specify_field %>
-          </div>
-          
-          <div class="field">
-            <%= f.label :introduction %><br />
-            <%= f.text_area :introduction %>
-          </div>
-        
-          <div class="field">
-            <%= f.label :email %><br />
-            <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-          </div>
+
+        <!-- 氏名 -->
+        <div class="form-group">
+          <%= f.label :"名前" %>
+          <%= f.text_field :name, class: 'form-control', autofocus: true, autocomplete: "name" %>
+        </div>
+
+        <!-- 得意分野 -->
+        <div class="form-group">
+          <%= f.label :"得意分野" %>
+          <%= f.text_field :specify_field, class: 'form-control' %>
+        </div>
+
+        <!-- 紹介文 -->
+        <div class="form-group">
+          <%= f.label :"紹介文" %>
+          <%= f.text_area :introduction, class: 'form-control', rows: 4 %>
+        </div>
+
+        <!-- メールアドレス -->
+        <div class="form-group">
+          <%= f.label :"メールアドレス" %>
+          <%= f.email_field :email, class: 'form-control', autofocus: true, autocomplete: "email" %>
+        </div>
+
         
           <div class="field">
           <%= f.check_box :change_password, {id: 'change_password_toggle'} %>
@@ -36,8 +44,8 @@
         
         <div id="password_fields" style="display: none;">
           <div class="field">
-            <%= f.label :password %><br />
-            <%= f.password_field :password, autocomplete: "new-password" %>
+            <%= f.label :"パスワード" %><br />
+            <%= f.password_field :password,class: 'form-control', autocomplete: "new-password" %>
             <% if @minimum_password_length %>
               <br />
               <em><%= @minimum_password_length %> characters minimum</em>
@@ -45,13 +53,13 @@
           </div>
         
           <div class="field">
-            <%= f.label :password_confirmation %><br />
-            <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
+            <%= f.label :"パスワード(再確認)" %><br />
+            <%= f.password_field :password_confirmation,class: 'form-control', autocomplete: "new-password" %>
           </div>
         
           <div class="field">
-            <%= f.label :current_password %> <i>(we need your current password to confirm your changes)</i><br />
-            <%= f.password_field :current_password, autocomplete: "current-password" %>
+            <%= f.label :"現在のパスワード" %> <i>(変更を確認するには現在のパスワードが必要です)</i><br />
+            <%= f.password_field :current_password,class: 'form-control', autocomplete: "current-password" %>
           </div>
         </div>
         
