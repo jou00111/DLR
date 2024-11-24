@@ -1,45 +1,30 @@
 <div class="container">
   <div class="row">
-    <div class="col-md-2">
-      <h4 class="font-weight-bold my-4 bg-light">投稿一覧</h4>
-    </div>
-    <div class="col-md-7 offset-md-1"></div>
-    <div class="col-md-2">
-      <%= link_to new_post_path do %>
-        <i class="fa-solid fa-plus"></i>
-      <% end %>
+    <div class="col mt-5">
+      <h2>投稿一覧（表示数<%= @posts.count %>件）</h2>
     </div>
   </div>
-
-  <div class="row">
-    <div class="col">
-
-      <table class='table mx-auto my-5 w-75'>
-        <thead>
-          <tr class="bg-light">
-            <th>ID</th>
-            <th>投稿者名</th>
-            <th>題名</th>
-            <th>本文</th>
-          </tr>
-        </thead>
-
-        <% posts.each do |post| %>
-
-        <tbody>
-          <tr>
-            <td><%= post.id %></td>
-            <td><%= link_to post_path(post.id) do %>
-                <%= post.user.name %>
-                <% end %></td>
-            <td><%= post.title %></td>
-            <td><%= post.body %></td>
-          </tr>
-        </tbody>
-
+  <div class="row g-4"> <!-- カード間にスペースを追加 -->
+    <% @posts.each do |post| %>
+      <div class="col-md-4 col-sm-6"> <!-- 1行に3列（中画面以上）または2列（小画面）を設定 -->
+        <%= link_to post_path(post), class: "text-decoration-none text-dark" do %>
+          <div class="card h-100"> <!-- 高さを揃える -->
+            <% if post.image.attached? %>
+              <%= image_tag post.image, class: 'card-img-top', alt: post.title, style: 'height: 200px; object-fit: cover;' %>
+            <% else %>
+              <%= image_tag 'no_image.jpg', class: 'card-img-top', alt: 'No Image', style: 'height: 200px; object-fit: cover;' %>
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= post.title %></h5>
+              <p class="text-muted"><%= post.user.name %></p>
+              <p class="card-text"><%= truncate(post.body, length: 100) %></p> <!-- 投稿内容を100文字まで表示 -->
+            </div>
+          </div>
         <% end %>
-        </tbody>
-      </table>
-    </div>
+      </div>
+    <% end %>
+  </div>
+  <div class="row justify-content-center">
+    <%= paginate @posts %> <!-- ページネーション -->
   </div>
 </div>

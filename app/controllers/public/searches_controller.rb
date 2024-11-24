@@ -9,6 +9,7 @@ class Public::SearchesController < ApplicationController
        @records = User.search_for(@word, @search)
       else    
        @records = Post.search_for(@word, @search)
+       @tag_list = Tag.all
       end
   end    
 end

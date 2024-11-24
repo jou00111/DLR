@@ -1,10 +1,59 @@
-<% if user_signed_in? %>
-<div class="search_form">
-    <%= form_with url: search_path, local: true, method: :get do |f| %>
-        <%= f.text_field :word %>
-        <%= f.select :range, options_for_select({ "User" => "user", "Post" => "post" }) %>
-        <%= f.select :search, options_for_select([["完全一致","perfect_match"],["前方一致","forward_match"],["後方一致","backword_match"],["部分一致","partial_match"]]) %>
-        <%= f.submit "検索", class:"btn-sm btn-primary" %>
-        <% end %>
+<div class="search-form p-3 rounded shadow-sm">
+  <%= form_with url: search_path, local: true, method: :get, class: "d-flex justify-content-center align-items-center" do |f| %>
+    
+    <!-- キーワード入力欄 -->
+    <div class="form-group mx-2">
+      <%= f.text_field :word, class: "form-control", placeholder: "キーワードを入力" %>
+    </div>
+
+    <!-- 対象範囲（User/Post）のアイコン -->
+    <div class="form-group">
+      <%= f.label :range, "対象" %>
+      <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-users"></i> <!-- Userアイコン -->
+      </button>
+      <div class="dropdown-menu">
+        <div class="dropdown-item">
+          <%= f.radio_button :range, "user", id: "user", class: "mr-2" %> <!-- ラジオボタンに右マージンを追加 -->
+          <%= f.label :range, "User", for: "user" %> <!-- ラベルをラジオボタンの隣に表示 -->
+        </div>
+        <div class="dropdown-item">
+          <%= f.radio_button :range, "post", id: "post", class: "mr-2" %> <!-- ラジオボタンに右マージンを追加 -->
+          <%= f.label :range, "Post", for: "post" %> <!-- ラベルをラジオボタンの隣に表示 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 一致方法のアイコン -->
+    <div class="form-group">
+      <%= f.label :search, "一致方法"%>
+      <button type="button" class="btn btn-outline-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-search"></i> <!-- Searchアイコン -->
+      </button>
+      <div class="dropdown-menu">
+        <div class="dropdown-item">
+          <%= f.radio_button :search, "perfect_match", id: "perfect_match", class: "mr-2" %> <!-- ラジオボタンに右マージンを追加 -->
+          <%= f.label :search, "完全一致", for: "perfect_match" %> <!-- ラベルをラジオボタンの隣に表示 -->
+        </div>
+        <div class="dropdown-item">
+          <%= f.radio_button :search, "forward_match", id: "forward_match", class: "mr-2" %> <!-- ラジオボタンに右マージンを追加 -->
+          <%= f.label :search, "前方一致", for: "forward_match" %> <!-- ラベルをラジオボタンの隣に表示 -->
+        </div>
+        <div class="dropdown-item">
+          <%= f.radio_button :search, "backword_match", id: "backword_match", class: "mr-2" %> <!-- ラジオボタンに右マージンを追加 -->
+          <%= f.label :search, "後方一致", for: "backword_match" %> <!-- ラベルをラジオボタンの隣に表示 -->
+        </div>
+        <div class="dropdown-item">
+          <%= f.radio_button :search, "partial_match", id: "partial_match", class: "mr-2" %> <!-- ラジオボタンに右マージンを追加 -->
+          <%= f.label :search, "部分一致", for: "partial_match" %> <!-- ラベルをラジオボタンの隣に表示 -->
+        </div>
+      </div>
+    </div>
+
+    <!-- 検索ボタン -->
+    <div class="form-group ">
+      <%= f.submit "検索", class: "btn btn-primary btn-sm" %>
+    </div>
+
+  <% end %>
 </div>
-<% end %>

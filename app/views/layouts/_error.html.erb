@@ -1,20 +1,12 @@
 <% if obj.errors.any? %>
-
-<div id="error_explanation">
-
- <h2>
-
- <%= pluralize(obj.errors.count, "error") %> prohibited this obj from being saved:
-
-</h2>
-
- <ul>
-
- <% obj.errors.full_messages.each do |message| %>
-
-   <li><%= message %></li>
-<% end %>
-
-</ul>
-
+  <div id="error_explanation" class="alert alert-danger">
+    <h5 class="alert-heading">
+      <%= pluralize(obj.errors.count, "エラー") %>により、この操作は完了できませんでした:
+    </h5>
+    <ul class="mb-0">
+      <% obj.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul>
+  </div>
 <% end %>

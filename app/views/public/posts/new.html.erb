@@ -2,12 +2,13 @@
 <div class="container">
   <div class="row">
     <div class="col-mg-2">
-      <h4 class="font-weight-bold my-4 bg-light">商品新規登録</h4>
+      <h4 class="font-weight-bold my-4 bg-light">新規投稿</h4>
     </div>
   </div>
-<!--以下フォーム-->
+
   <div class="row">
-    <%= render 'form', post: @post %>
+    <div class="col">
+      <%= render 'form', post: @post %>
+    </div>
   </div>
 </div>
-

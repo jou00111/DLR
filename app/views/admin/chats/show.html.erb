@@ -1,0 +1,23 @@
+<h1>チャットルーム</h1>
+<p>参加ユーザー: <%= @room.users.map(&:name).join(", ") %></p>
+
+<% @chats.each do |chat| %>
+  <div class="chat-message">
+    <% if chat.admin_id %>
+      <p><strong>管理者:</strong> <%= chat.message %></p>
+    <% elsif chat.user_id %>
+      <p><strong>ユーザー:</strong> <%= chat.message %></p>
+    <% end %>
+  </div>
+<% end %>
+
+<%= form_with model: @chat, url: admin_chats_path, local: true do |f| %>
+  <div>
+    <%= f.text_area :message, placeholder: "メッセージを入力してください" %>
+    <%= f.hidden_field :room_id, value: @room.id %>
+    <%= f.hidden_field :user_id, value: current_admin.id %> <!-- 管理者IDをデフォルトで送信 -->
+  </div>
+  <%= f.submit "送信" %>
+<% end %>
+
+

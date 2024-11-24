@@ -1,44 +1,76 @@
-<header>
-  <div class="container">
-    <div class="row">
-      <div class="col-md-6">
-        <a class="navbar-brand" href="/"><span>DLR</span></a>
+<header class="bg-success py-3">
+  <!-- container-fluid を使用して、全幅に設定 -->
+  <div class="container-fluid w-100">
+    <div class="row align-items-center">
+      <!-- ロゴ -->
+      <div class="col-md-1 text-center">
+        <a class="navbar-brand" href="/">
+          <%= image_tag 'logo.png', alt: 'DLR Logo', class: 'img-fluid', style: 'max-width: 120px;' %> <!-- max-width を指定 -->
+        </a>
       </div>
-      <div class="col-md-6">
-        <div class="d-flex flex-column align-items-end mt-3">
-          <nav class="navbar navbar-expand-lg p-0">
-            <ul class="nav">
+
+      <!-- ナビゲーション -->
+      <div class="col-md-11">
+        <nav class="navbar navbar-expand-md p-0 d-flex justify-content-between">
+          <!-- ハンバーガーメニュー ボタン -->
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <!-- ナビゲーションリンク（ハンバーガーメニュー） -->
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
               <% if user_signed_in? %>
+                <!-- ユーザー側ナビゲーションボタン -->
                 <li class="nav-item">
-                  <%= link_to "マイページ", mypage_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %>
+                  <%= link_to "マイページ", mypage_path, class: "nav-link btn btn-outline-light mx-2" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "投稿一覧", posts_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %>
+                  <%= link_to "投稿一覧", posts_path, class: "nav-link btn btn-outline-light mx-2" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "新規投稿", new_post_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %>
+                  <%= link_to "新規投稿", new_post_path, class: "nav-link btn btn-outline-light mx-2" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link btn btn-outline-secondary text-dark ml-3" %>
+                  <%= link_to "ログアウト", destroy_user_session_path, method: :delete, class: "nav-link btn btn-outline-light mx-2" %>
+                </li>
+              <% elsif admin_signed_in? %>
+                <!-- 管理者側ナビゲーションボタン -->
+                <li class="nav-item">
+                  <%= link_to "投稿一覧", admin_posts_path, class: "nav-link btn btn-outline-light mx-2" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "会員一覧", admin_users_path, class: "nav-link btn btn-outline-light mx-2" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "DM一覧", admin_chats_path, class: "nav-link btn btn-outline-light mx-2" %>
+                </li>
+                <li class="nav-item">
+                  <%= link_to "ログアウト", destroy_admin_session_path, method: :delete, class: "nav-link btn btn-outline-light mx-2" %>
                 </li>
               <% else %>
+                <!-- 未ログイン時ナビゲーションボタン -->
                 <li class="nav-item">
-                  <%= link_to "About", about_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %>
+                  <%= link_to "About", about_path, class: "nav-link btn btn-outline-light mx-2" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "投稿一覧", posts_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %>
+                  <%= link_to "投稿一覧", posts_path, class: "nav-link btn btn-outline-light mx-2" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "新規登録", new_user_registration_path, class: "nav-link btn btn-outline-secondary text-dark mx-3" %>
+                  <%= link_to "新規登録", new_user_registration_path, class: "nav-link btn btn-outline-light mx-2" %>
                 </li>
                 <li class="nav-item">
-                  <%= link_to "ログイン", new_user_session_path, class: "nav-link btn btn-outline-secondary text-dark ml-3" %>
+                  <%= link_to "ログイン", new_user_session_path, class: "nav-link btn btn-outline-light mx-2" %>
                 </li>
               <% end %>
             </ul>
-          </nav>
-          <%= render 'layouts/search' %>
-        </div>
+
+            <!-- 検索フォーム -->
+            <div class="ml-auto">
+              <%= render 'layouts/search' %>
+            </div>
+          </div>
+        </nav>
       </div>
     </div>
   </div>

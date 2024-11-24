@@ -1,0 +1,22 @@
+<h1>メッセージ検索結果</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>ユーザー</th>
+      <th>メッセージ内容</th>
+      <th>チャットルームID</th>
+      <th>送信日時</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @chats.each do |chat| %>
+      <tr>
+        <td><%= chat.user.name %></td>
+        <td><%= chat.message %></td>
+        <td><%= link_to chat.room_id, admin_chat_path(chat.room) %></td>
+        <td><%= chat.created_at.strftime("%Y-%m-%d %H:%M") %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

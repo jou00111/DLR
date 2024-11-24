@@ -1,9 +1,9 @@
 class Admin::UsersController < ApplicationController
-    
+  before_action :authenticate_admin!
     # ユーザー詳細画面
     def show
       @user = User.find(params[:id])
-      @posts = @user.posts
+      @posts = @user.posts.order(created_at: :desc).page(params[:page]).per(8)
     end
 
     # ユーザー詳細画面
@@ -13,13 +13,13 @@ class Admin::UsersController < ApplicationController
 
     # 編集画面
     def edit
-      @user = current_user
+      @user = User.find(params[:id])
     end
 
     def update
-      @user = current_user
+      @user = User.find(params[:id])
       if @user.update(user_params)  # 修正: post_params を渡す
-        redirect_to mypage_path, notice: "You have updated information successfully." # 編集後マイページ画面へ
+        redirect_to admin_user_path, notice: "You have updated information successfully." # 編集後マイページ画面へ
       else
         render :edit  # 編集失敗時はそのまま
       end

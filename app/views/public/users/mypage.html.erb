@@ -1,11 +1,46 @@
-<h2>マイページ</h2>
-<p>氏名</p>
-<p><%= @user.name %></p>
-<p>紹介文</p>
-<p><%= @user.introduction %></p>
-<p>得意分野</p>
-<p><%= @user.specify_field %></p>
-<%=link_to "編集する", users_information_edit_path, class:"btn btn-prymary w-25" %>
-<%=link_to "退会する", users_confilm_path, class:"btn btn-secondary w-25" %>
-<p>自身の投稿一覧</p>
-<%= render 'public/users/mypost', posts: @posts %>
+<div class="container mt-5">
+  <!-- プロフィール画像セクション -->
+  <div class="row mb-5">
+    <div class="col-12">
+      <div class="profile-image">
+        <% if @user.profile_image.attached? %>
+          <%= image_tag @user.profile_image, class: "img-fluid w-100", alt: "プロフィール画像" %>
+        <% else %>
+          <%= image_tag "/assets/default_profile.jpg", class: "img-fluid w-100" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+
+  <!-- マイページの詳細情報セクション -->
+  <div class="row mb-4">
+    <div class="col-md-8 mx-auto">
+      <h2 class="text-center mb-4">マイページ</h2>
+      <div class="mb-3">
+        <h5>氏名</h5>
+        <p><%= @user.name %></p>
+      </div>
+      <div class="mb-3">
+        <h5>紹介文</h5>
+        <p><%= @user.introduction %></p>
+      </div>
+      <div class="mb-3">
+        <h5>得意分野</h5>
+        <p><%= @user.specify_field %></p>
+      </div>
+
+      <!-- 編集と退会のボタン -->
+      <div class="d-flex justify-content-around">
+        <%= link_to "編集する", users_information_edit_path, class: "btn btn-primary w-25" %>
+        <%= link_to "退会する", users_confilm_path, class: "btn btn-secondary w-25" %>
+      </div>
+    </div>
+  </div>
+
+  <!-- ユーザーの投稿セクション -->
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <%= render 'public/users/mypost', posts: @posts %>
+    </div>
+  </div>    
+</div>

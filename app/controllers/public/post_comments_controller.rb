@@ -20,16 +20,21 @@ class Public::PostCommentsController < ApplicationController
 
   #詳細画面
   def show
+    @post = Post.find(params[:post_id])
     @post_comment = PostComment.find(params[:id])
+    @user = @post_comment.user
   end
 
   #編集画面
   def edit
+    @post = Post.find(params[:post_id])
     @post_comment = PostComment.find(params[:id])
+    @user = @post_comment.user
   end
 
   #編集処理
   def update
+    @post = Post.find(params[:post_id])
     @post_comment = PostComment.find(params[:id])
     @post = @post_comment.post
     @post_comment.update(post_comment_params)

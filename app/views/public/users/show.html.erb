@@ -1,7 +1,29 @@
-<h2><%= @user.name%>さんのページ </h2>
-<p>氏名</p>
-<p><%= @user.name %></p>
-<p>紹介文</p>
-<p><%= @user.introduction %></p>
-<p>得意分野</p>
-<p><%= @user.specify_field %></p>
+<div class="container">
+    <div class="row mb-5">
+        <div class="col text-center">
+          <h2></h2>
+          <div class="profile-image">
+          <% if @user.profile_image.attached? %>
+            <%= image_tag @user.profile_image, class: "img-fluid profile-image", alt: "プロフィール画像" %>
+          <% else %>
+            <%= image_tag "/assets/default_profile.jpg"%>
+          <% end %>
+        　</div>
+        </div>
+　　</div>
+    <div class="row">
+        <div class="col mx-auto">
+            <h2><%= @user.name %>さんのマイページ</h2>
+            <p>氏名</p>
+            <p><%= @user.name %></p>
+            <p>紹介文</p>
+            <p><%= @user.introduction %></p>
+            <p>得意分野</p>
+            <p><%= @user.specify_field %></p>
+            <%= link_to 'chatを始める', chat_path(@user.id), class: "ml-3" %>
+        </div>
+    </div>    
+    <div class="row">    
+        <%= render 'public/users/mypost', posts: @posts %>
+    </div>    
+</div>    

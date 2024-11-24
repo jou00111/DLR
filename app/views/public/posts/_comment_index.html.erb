@@ -1,38 +1,32 @@
-<div class="container">
-  <div class="row">
-    <div class="col-md-2">
-      <h4 class="font-weight-bold my-4 bg-light">コメント一覧</h4>
+ <div class="row">
+    <div class="col-md-4">
+      <h4 class="font-weight-bold my-4">コメント一覧</h4>
     </div>
-    <div class="col-md-7 offset-md-1"></div>
-  </div>
+  </div>  
+<div class="row">
+  <div class="col">
+    <table class='table mx-auto my-5 w-75'>
+      <thead>
+        <tr class="bg-light">
+          <th>ID</th>
+          <th>投稿者名</th>
+          <th>題名</th>
+          <th>本文</th>
+        </tr>
+      </thead>
 
-  <div class="row">
-    <div class="col">
+      <% post_comments.each do |post_comment| %>
 
-      <table class='table mx-auto my-5 w-75'>
-        <thead>
-          <tr class="bg-light">
-            <th>ID</th>
-            <th>投稿者名</th>
-            <th>題名</th>
-            <th>本文</th>
-          </tr>
-        </thead>
-
-        <% post_comments.each do |post_comment| %>
-
-        <tbody>
-          <tr>
-            <td><%= post_comment.id %></td>
-            <td><%= link_to post_post_comment_path(post_comment.id) do %>
-                <%= post_comment.user.name %>
-                <% end %></td>
-            <td><%= post_comment.title %></td>
-            <td><%= post_comment.body %></td>
-            <td><%= post_comment.star %></td>
-          </tr>
-        </tbody>
-        <% end %>
+      <tbody>
+        <tr>
+          <td><%= post_comment.id %></td>
+          <td><%= link_to post_comment.user.name, post_post_comment_path(post_comment.post, post_comment) %></td>
+          <td><%= post_comment.title %></td>
+          <td><%= post_comment.body %></td>
+          <td><%= post_comment.star %></td>
+        </tr>
+      </tbody>
+      <% end %>
       </table>
     </div>
   </div>

@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h2>コメント詳細</h2>
+      <!--画像の有無で表示が変わる-->
+         <div class="name">
+        <p>氏名</p>
+        <p><%= @post_comment.user.name %>
+      </div>
+      <p>評価</p>
+      <div id="comment_raty" data-score="<%= @post_comment.star %>"></div>
+      <div class="title">
+        <p>題名</p>
+        <p><%= @post_comment.title %>
+      </div>
+      <div class="body">
+        <p>本文</p>
+        <p><%= @post_comment.body %>
+      </div>
+      <div class="button1">
+        <%= link_to "投稿詳細へ", post_path(@post), class: "btn btn-primary mr-2"%>
+        <% if @user == current_user %>
+          <%= link_to "編集する", edit_post_post_comment_path(@post_comment), class: "btn btn-success mr-2" %>
+          <%= link_to "削除", post_post_comment_path(@post_comment), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+        <% end %>
+      </div>
+    </div>
+ </div>
+</div>

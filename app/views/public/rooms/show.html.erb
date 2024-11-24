@@ -1,0 +1,11 @@
+<h1><%= @room.name %> のチャット</h1>
+
+<%= form_for [@room, @chat] do |f| %>
+  <%= f.text_area :message, placeholder: "メッセージを入力", rows: 3 %>
+  <%= f.submit "送信", class: "btn btn-primary" %>
+<% end %>
+
+<h2>メッセージ履歴</h2>
+<% @chats.each do |chat| %>
+  <p><%= chat.user.name %>: <%= chat.message %></p>
+<% end %>
