@@ -1,0 +1,29 @@
+<h1>チャットルーム一覧</h1>
+<%= form_with url: search_admin_chats_path, method: :get, local: true do |f| %>
+  <%= f.text_field :keyword, placeholder: "メッセージを検索" %>
+  <%= f.submit "検索" %>
+<% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>ルームID</th>
+      <th>参加ユーザー</th>
+      <th>最終メッセージ</th>
+      <th>操作</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @rooms.each do |room| %>
+      <tr>
+        <td><%= room.id %></td>
+        <td><%= room.users.map(&:name).join(", ") %></td>
+        <td><%= room.chats.last&.message || "メッセージなし" %></td>
+        <td>
+          <%= link_to "詳細を見る", admin_chat_path(room) %>
+          <%= link_to "削除", admin_destroy_room_path(room), method: :delete, data: { confirm: "本当に削除しますか？" } %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

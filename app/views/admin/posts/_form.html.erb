@@ -1,0 +1,44 @@
+  <!--編集側フォーム-->
+  <div class="container mt-4">
+    <%= form_with model: @post, url: admin_post_path(@post.id), method: :patch do |f| %>
+      <div class="row justify-content-center">
+        <div class="col-md-8">
+          <div class="form-group">
+            <%= f.label :image, "画像" %>
+            <%= f.file_field :image, accept: "image/*", class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :title, "題名" %>
+            <%= f.text_field :title, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :body, "説明" %>
+            <%= f.text_area :body, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :name, "タグ" %>
+            <%= f.text_field :name, value: @tag_list, class: 'form-control' %>
+          </div>
+
+          <div class="form-group">
+            <%= f.label :is_active, "公開ステータス" %>
+            <div class="custom-control custom-radio custom-control-inline">
+              <%= f.radio_button :is_active, true, class: 'custom-control-input', id: 'status-active' %>
+              <%= f.label :is_active, '公開', class: 'custom-control-label', for: 'status-active' %>
+            </div>
+            <div class="custom-control custom-radio custom-control-inline">
+              <%= f.radio_button :is_active, false, class: 'custom-control-input', id: 'status-deleted' %>
+              <%= f.label :is_active, '非公開', class: 'custom-control-label', for: 'status-deleted' %>
+            </div>
+          </div>
+
+          <div class="text-center">
+            <%= f.submit '変更を保存', class: "btn btn-success" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>

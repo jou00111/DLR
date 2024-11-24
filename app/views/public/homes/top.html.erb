@@ -1,0 +1,58 @@
+<div class="container mt-5">
+  <div class="bg-image1 mb-5 w-100">
+    <p class="text-center pt-5"><strong>この度は当サイトにご訪問いただき誠にありがとうございます。<br>
+        当サイトは設計者たちの経験や知識を投稿・共有するサイトです。<br>
+        ご自身の書き込みを非公開にすることでメモ帳代わりにも活用できます。<br>
+        情報は常に変化するものであり、探究することに終わりはありません。<br>
+        お仕事やアウトプットの際にぜひご利用ください。</strong>
+    </p>
+  </div> <!-- クラス名を正しい形式に修正 -->
+  <h3 class="text-center mb-4"><strong>新着投稿</strong></h3>
+  <!-- Owl Carouselスライダー -->
+  <div class="owl-carousel owl-theme">
+    <% @posts_with_avg_rating.each do |item| %>
+      <div class="item">
+        <div class="card shadow-sm">
+          <% if item[:post].image.attached? %>
+            <%= image_tag item[:post].image, class: 'card-img-top', alt: item[:post].title %>
+          <% else %>
+            <%= image_tag 'no_image.jpg', class: 'card-img-top', alt: 'No Image' %>
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= item[:post].user.name %></h5>
+            <p><%= item[:post].title %></p>
+            
+            <!-- 平均評価の表示 -->
+            <div id="average-rating" data-average="<%= item[:average_star] %>"></div>
+
+            <!-- 投稿内容のオーバーレイ部分 -->
+            <div class="post-content-overlay">
+              <h5 class="post-title"><%= item[:post].title %></h5>
+              <p class="post-body"><%= item[:post].body %></p>
+              <%= link_to '詳細を見る', post_path(item[:post]), class: 'btn btn-primary btn-sm' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+<script>
+$('.owl-carousel').owlCarousel({
+    loop: true,
+    margin: 10,
+    nav: true,
+    responsive: {
+        0: {
+            items: 1
+        },
+        600: {
+            items: 3
+        },
+        1000: {
+            items: 5
+        }
+    }
+});
+</script>

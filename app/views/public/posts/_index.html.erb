@@ -1,50 +1,57 @@
 <div class="container">
   <div class="row">
     <div class="col mt-5">
-      <h2>投稿一覧（表示数<%= posts.count %>件）</h2>
-      <!-- タグの一覧（投稿全体でのタグ一覧） -->
-      <% tag_list.each do |list| %>
-        <i class="fa-sharp fa-solid fa-tag"></i>
-        <%= link_to list.name, search_tag_path(tag_id: list.id) %>
-        <%= "(#{list.post_tags.count})" %>
-      <% end %>
+      <h2>投稿一覧（表示数<%= @posts.count %>件）</h2>
+      
+      <!-- タグ一覧 -->
+      <div class="mb-4">
+        <% @tag_list.each do |tag| %>
+          <%= link_to search_tag_path(tag_id: tag.id), class: "badge bg-secondary text-decoration-none mx-1" do %>
+            <i class="fa-sharp fa-solid fa-tag"></i>
+            <%= tag.name %>
+            <span class="badge bg-light text-dark">( <%= tag.post_tags.count %> )</span>
+          <% end %>
+        <% end %>
+      </div>
 
+      <!-- 投稿カード一覧 -->
       <div class="row mt-5">
-        <% posts.each do |post| %>
-          <!-- 横並び4つを実現 -->
+        <% @posts.each do |post| %>
           <div class="col-md-3 d-flex align-items-stretch mb-4">
-            <div class="card mx-auto">
-              <%= link_to post_path(post), class: "col text-decoration-none text-dark" do %>
-                <% if post.image.attached? %>
-                  <%= image_tag post.image, class: 'card-img-top', alt: post.title %>
-                <% else %>
-                  <%= image_tag 'no_image.jpg', class: 'card-img-top', alt: 'No Image' %>
-                <% end %>
-                <div class="card-body">
-                  <div class="mb-2">
-                    <%= post.user.name %>
-                  </div>
-                  <div class="mb-2">
-                    <%= post.title %>
-                  </div>
-                  <div class="mb-5">
-                    <%= truncate(post.body, length: 100) %> <!-- 投稿内容を100文字まで表示 -->
-                  </div>
-
-                  <!-- 投稿ごとのタグ一覧 -->
-                  <div>
-                    <% post.tags.each do |tag| %>
-                      <i class="fa-sharp fa-solid fa-tag"></i>
-                      <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
-                    <% end %>
-                  </div>
-                </div>
+            <!-- カード全体 -->
+            <%= link_to post_path(post), class: "card text-decoration-none text-dark mx-auto shadow-sm h-100" do %>
+              <!-- カードの画像 -->
+              <% if post.image.attached? %>
+                <%= image_tag post.image, class: 'card-img-top', alt: post.title %>
+              <% else %>
+                <%= image_tag 'no_image.jpg', class: 'card-img-top', alt: 'No Image' %>
               <% end %>
-            </div>
+
+              <!-- カードの本文 -->
+              <div class="card-body">
+                <h5 class="card-title mb-2"><%= post.title %></h5>
+                <p class="card-text text-truncate mb-4"><%= truncate(post.body, length: 100) %></p>
+                <div class="text-muted small">
+                  <i class="fa-sharp fa-solid fa-user"></i> <%= post.user.name %>
+                </div>
+                <!-- 投稿ごとのタグ -->
+                <div class="mt-2">
+                  <% post.tags.each do |tag| %>
+                    <%= link_to search_tag_path(tag_id: tag.id), class: "badge bg-info text-decoration-none mx-1" do %>
+                      <i class="fa-sharp fa-solid fa-tag"></i> <%= tag.name %>
+                    <% end %>
+                  <% end %>
+                </div>
+              </div>
+            <% end %>
           </div>  
         <% end %>
       </div>
     </div>
   </div>
-  <%= paginate @posts %>
+
+  <!-- ページネーション -->
+  <div class="d-flex justify-content-center mt-4">
+    <%= paginate @posts %>
+  </div>
 </div>

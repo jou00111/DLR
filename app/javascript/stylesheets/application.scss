@@ -19,3 +19,57 @@
   border-radius: 8px; /* 角丸を追加したい場合 */
   overflow: hidden; /* 枠外の画像部分を隠す */
 }
+
+
+/* 投稿内容のオーバーレイ */
+.card_body {
+  position: relative;
+}
+
+/* オーバーレイ部分のデフォルト表示設定 */
+.post-content-overlay {
+  display: none; /* 初期状態では非表示 */
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.7); /* 背景を半透明に */
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  z-index: 10;
+}
+
+.item:hover .post-summary {
+  opacity: 0; /* マウスオーバー時に本文を非表示 */
+}
+
+.item:hover .post-content-overlay {
+  display: block; /* マウスオーバー時にオーバーレイ表示 */
+}
+
+.post-content-overlay .post-title {
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}
+
+.post-content-overlay .post-body {
+  font-size: 1rem;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.bg-image1 {
+  background-image: url('/assets/image1.jpg'); /* 画像ファイルのパスを指定 */
+  background-size: cover; /* 画像をコンテナに合わせてリサイズ */
+  background-position: center; /* 画像を中央に配置 */
+  height: 300px; /* 必要に応じて高さを調整 */
+  width: 100%; /* 必要に応じて幅を調整 */
+}
+.navbar-toggler {
+  background-color: black;
+}
+.navbar-toggler-icon {
+  background-color: white; /* アイコンを白にする場合 */
+}

@@ -1,0 +1,39 @@
+ja:
+  activerecord:
+    models:
+      user: ユーザー
+      admin: 管理者
+    attributes:
+      user:
+        email: メールアドレス
+        password: パスワード
+        remember_me: "ログイン状態を保持"
+        specify_field: 得意分野
+        name: 名前
+      admin:
+        email: メールアドレス
+        password: パスワード
+        remember_me: "ログイン状態を保持"
+  devise:
+    sessions:
+      signed_in: "ログインしました"
+      signed_out: "ログアウトしました"
+      invalid: "メールアドレスまたはパスワードが正しくありません"
+    registrations:
+      new:
+        email: メールアドレス
+        password: パスワード
+        password_confirmation: パスワード確認
+        specify_field: 得意分野
+        name: 名前
+        submit: 登録
+  helpers:
+    label:
+      user:
+        email: メールアドレス
+        password: パスワード
+        specify_field: 得意分野
+        name: 名前
+      admin:
+        email: メールアドレス
+        password: パスワード
