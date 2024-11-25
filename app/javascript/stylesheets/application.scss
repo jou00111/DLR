@@ -11,6 +11,10 @@
   object-fit: cover; /* 縦横比を維持しつつ、指定したサイズに収める */
   border-radius: 8px; /* 角丸を追加したい場合 */
 }
+.carousel-item img {
+  object-fit: cover;
+  height: 400px; /* スライド画像の高さを調整 */
+}
 
 .profile-image {
   width: 100%; /* 横幅を親要素に合わせる */
@@ -73,3 +77,13 @@
 .navbar-toggler-icon {
   background-color: white; /* アイコンを白にする場合 */
 }
+
+.slick-next {
+	right: 10px !important;
+	z-index: 100;
+ }
+
+.slick-prev {
+	left: 10px !important;
+  z-index: 100;
+ }

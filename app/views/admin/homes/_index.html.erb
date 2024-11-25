@@ -21,8 +21,8 @@
             <!-- カード全体 -->
             <%= link_to admin_post_path(post), class: "card text-decoration-none text-dark mx-auto shadow-sm h-100" do %>
               <!-- カードの画像 -->
-              <% if post.image.attached? %>
-                <%= image_tag post.image, class: 'card-img-top', alt: post.title %>
+              <% if posts.image.attached? %>
+                <%= image_tag posts.image[0], class: 'card-img-top', alt: post.title %>
               <% else %>
                 <%= image_tag 'no_image.jpg', class: 'card-img-top', alt: 'No Image' %>
               <% end %>
