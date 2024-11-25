@@ -13,9 +13,6 @@ class Post < ApplicationRecord
   validate :image_count_within_limit # カスタムバリデーション
   #画像
   has_many_attached :image
-
-  # 画像の圧縮処理を追加
-  after_save :compress_image
   
   def save_tags(tags)
   # タグが存在していれば、タグの名前を配列として全て取得
@@ -34,12 +31,6 @@ class Post < ApplicationRecord
     new_tags.each do |new_name|
       tag = Tag.find_or_create_by(name:new_name)
       self.tags << tag
-    end
-  end
-  
-  def compress_image
-    if image.attached?
-      image.variant(resize_to_limit: [1200, 800]).processed
     end
   end
   
