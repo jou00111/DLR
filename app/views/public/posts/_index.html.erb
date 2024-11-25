@@ -4,7 +4,7 @@
       <h2>投稿一覧（表示数<%= @posts.count %>件）</h2>
       
       <!-- タグ一覧 -->
-      <div class="mb-4">
+         <div class="mb-4">
         <% @tag_list.each do |tag| %>
           <%= link_to search_tag_path(tag_id: tag.id), class: "badge bg-secondary text-decoration-none mx-1" do %>
             <i class="fa-sharp fa-solid fa-tag"></i>
@@ -15,14 +15,15 @@
       </div>
 
       <!-- 投稿カード一覧 -->
-      <div class="row mt-5">
+      <div class="row mt-5 mb-2">
         <% @posts.each do |post| %>
           <div class="col-md-3 d-flex align-items-stretch mb-4">
             <!-- カード全体 -->
             <%= link_to post_path(post), class: "card text-decoration-none text-dark mx-auto shadow-sm h-100" do %>
               <!-- カードの画像 -->
               <% if post.image.attached? %>
-                <%= image_tag post.image, class: 'card-img-top', alt: post.title %>
+                <%= image_tag post.image[0], class: 'card-img-top', alt: post.title %>
+
               <% else %>
                 <%= image_tag 'no_image.jpg', class: 'card-img-top', alt: 'No Image' %>
               <% end %>

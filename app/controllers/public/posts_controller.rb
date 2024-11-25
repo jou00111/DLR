@@ -75,7 +75,7 @@ class Public::PostsController < ApplicationController
   private
   #許可する投稿のパラメータ
   def post_params
-    params.require(:post).permit(:title, :body, :is_active, :image, :status).tap do |whitelisted|
+    params.require(:post).permit(:title, :body, :is_active, :status,image: []).tap do |whitelisted|
       # is_activeが"true"ならtrueに変換、"false"ならfalseに変換
       whitelisted[:is_active] = ActiveModel::Type::Boolean.new.cast(whitelisted[:is_active])
     end

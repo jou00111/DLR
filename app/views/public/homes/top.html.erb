@@ -14,7 +14,7 @@
       <div class="item">
         <div class="card shadow-sm">
           <% if item[:post].image.attached? %>
-            <%= image_tag item[:post].image, class: 'card-img-top', alt: item[:post].title %>
+            <%= image_tag item[:post].image[0], class: 'card-img-top', alt: item[:post].title %>
           <% else %>
             <%= image_tag 'no_image.jpg', class: 'card-img-top', alt: 'No Image' %>
           <% end %>

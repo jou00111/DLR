@@ -5,9 +5,12 @@
       <!--画像の有無で表示が変わる-->
       <% if @post.image.attached? %>
         <div class="image-frame">
-          <%= image_tag @post.image %>
+          <% @post.image.each do |img| %>
+            <%= image_tag img %>
+          <% end %>
         </div>
       <% end %>
+
       <div class="name">
         <p>氏名</p>
         <p><%= @post.user.name %>

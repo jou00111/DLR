@@ -10,7 +10,7 @@
             <div class="card mx-auto">
               <%= link_to post_path(post), class: "col text-decoration-none text-dark" do %>
                 <% if post.image.attached? %>
-                  <%= image_tag post.image, class: 'card-img-top', alt: post.title %>
+                  <%= image_tag post.image[0], class: 'card-img-top', alt: post.title %>
                 <% else %>
                   <%= image_tag 'no_image.jpg', class: 'card-img-top', alt: 'No Image' %>
                 <% end %>
