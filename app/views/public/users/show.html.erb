@@ -3,11 +3,11 @@
         <div class="col text-center">
           <h2></h2>
           <div class="profile-image">
-          <% if @user.profile_image.attached? %>
-            <%= image_tag @user.profile_image, class: "img-fluid profile-image", alt: "プロフィール画像" %>
-          <% else %>
-            <%= image_tag "/assets/default_profile.jpg"%>
-          <% end %>
+           <% if @user.profile_image.attached? %>
+              <%= image_tag @user.profile_image, class: "img-fluid w-100", alt: "プロフィール画像" %>
+            <% else %>
+              <%= image_tag asset_path('default_profile.jpg'), class: "img-fluid w-100", alt: "デフォルトプロフィール画像" %>
+            <% end %>
         　</div>
         </div>
 　　</div>
