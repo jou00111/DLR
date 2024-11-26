@@ -32,7 +32,11 @@
             </td>
             <td><%= post_comment.title %></td>
             <td><%= post_comment.body %></td>
-            <td><div id="comment_raty" data-score="<%= post_comment.star %>"></div></td>
+            <td><div id="comment_raty" 
+                 data-score="<%= post_comment.star %>" 
+                 data-star-on="<%= asset_path('star-on.png') %>"
+                 data-star-off="<%= asset_path('star-off.png') %>"
+                 data-star-half="<%= asset_path('star-half.png') %>"></div></td>
           </tr>
         <% end %>
       </tbody>
