@@ -17,7 +17,7 @@
       <!-- その他の投稿詳細情報 -->
       <div class="name">
         <p>氏名</p>
-        <p><%=link_to @post.user.name, user_path(@post.user) %></p>
+        <p><%=link_to @post.user.name, admin_user_path(@post.user) %></p>
       </div>
       <div class="title">
         <p>題名</p>

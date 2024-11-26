@@ -3,6 +3,8 @@ ja:
     models:
       user: ユーザー
       admin: 管理者
+      post: 投稿
+      post_comment: コメント
     attributes:
       user:
         email: メールアドレス
@@ -14,6 +16,35 @@ ja:
         email: メールアドレス
         password: パスワード
         remember_me: "ログイン状態を保持"
+      post:
+        title: 題名
+        body: 本文
+        tag: タグ
+      post_comment:
+        title: 題名
+        body: 本文
+        star: 評価
+    errors:
+      messages:
+        invalid: "は無効です"
+        blank: "を入力してください"
+        too_short: "は%{count}文字以上で入力してください"
+        too_long: "は%{count}文字以下で入力してください"
+        not_a_number: "は数値で入力してください"
+        not_a_datetime: "は有効な日付ではありません"
+        taken: "はすでに存在します"
+        greater_than: "は%{count}より大きい値にしてください"
+        less_than: "は%{count}より小さい値にしてください"
+        greater_than_or_equal_to: "は%{count}以上にしてください"
+        less_than_or_equal_to: "は%{count}以下にしてください"
+        confirmation: "と一致しません"
+        accepted: "は承認する必要があります"
+        other_than: "は%{value}以外の値にしてください"
+        email: "メールアドレスは有効な形式で入力してください"
+        password: "パスワードは6文字以上で入力してください"
+        password_confirmation: "パスワード確認が一致していません"
+        name: "名前は必須です"
+        specify_field: "得意分野は必須です"
   devise:
     sessions:
       signed_in: "ログインしました"
@@ -21,19 +52,11 @@ ja:
       invalid: "メールアドレスまたはパスワードが正しくありません"
     registrations:
       new:
-        email: メールアドレス
-        password: パスワード
-        password_confirmation: パスワード確認
-        specify_field: 得意分野
-        name: 名前
-        submit: 登録
-  helpers:
-    label:
-      user:
-        email: メールアドレス
-        password: パスワード
-        specify_field: 得意分野
-        name: 名前
-      admin:
-        email: メールアドレス
-        password: パスワード
+        email: "メールアドレスを入力してください"
+        password: "パスワードを入力してください"
+        password_confirmation: "パスワード確認を入力してください"
+        specify_field: "得意分野を入力してください"
+        name: "名前を入力してください"
+        submit: "登録する"
+
+    

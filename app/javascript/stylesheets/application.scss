@@ -3,8 +3,11 @@
 
 .card-img-top {
   object-fit: cover;
-  height: 200px;
+  height: 150px; /* 高さを固定 */
+  width: 100%; /* 横幅をカード全体に合わせる */
+  border-radius: 0; /* 必要に応じて角丸を調整 */
 }
+
 .post-image {
   width: 100%; /* 横幅を親要素に合わせる */
   height: 200px; /* 高さを指定 */
@@ -25,9 +28,13 @@
 }
 
 
-/* 投稿内容のオーバーレイ */
-.card_body {
-  position: relative;
+.card {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1; /* カードを伸縮可能にする */
+}
+.card-body {
+  flex-grow: 1;
 }
 
 /* オーバーレイ部分のデフォルト表示設定 */
