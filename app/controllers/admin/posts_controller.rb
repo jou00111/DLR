@@ -11,7 +11,7 @@ class Admin::PostsController < ApplicationController
     tag_list = params[:post][:name].split(',')
     if @post.update(post_params)  # 修正: post_params を渡す
        @post.save_tags(tag_list)
-      redirect_to admin_post_path(@post), notice: "You have updated post successfully." # 編集後詳細画面へ
+      redirect_to admin_post_path(@post), notice: "投稿の編集を完了しました。" # 編集後詳細画面へ
     else
       render :edit  # 編集失敗時はそのまま
     end
