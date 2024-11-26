@@ -23,7 +23,7 @@
           <td><%= link_to post_comment.user.name, post_post_comment_path(post_comment.post, post_comment) %></td>
           <td><%= post_comment.title %></td>
           <td><%= post_comment.body %></td>
-          <td><%= post_comment.star %></td>
+          <td><div id="comment_raty" data-score="<%= post_comment.star %>"></div></td>
         </tr>
       </tbody>
       <% end %>

@@ -10,7 +10,7 @@
         <%= link_to admin_post_path(post), class: "text-decoration-none text-dark" do %>
           <div class="card h-100"> <!-- 高さを揃える -->
             <% if post.image.attached? %>
-              <%= image_tag post.image, class: 'card-img-top', alt: post.title, style: 'height: 200px; object-fit: cover;' %>
+              <%= image_tag post.image[0], class: 'card-img-top', alt: post.title, style: 'height: 200px; object-fit: cover;' %>
             <% else %>
               <%= image_tag 'no_image.jpg', class: 'card-img-top', alt: 'No Image', style: 'height: 200px; object-fit: cover;' %>
             <% end %>

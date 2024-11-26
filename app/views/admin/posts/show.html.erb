@@ -2,41 +2,61 @@
   <div class="row">
     <div class="col">
       <h2>投稿詳細</h2>
-      <!--画像の有無で表示が変わる-->
+
+      <!-- 画像スライドショー (Slick) -->
       <% if @post.image.attached? %>
-        <div class="image-frame">
-          <% @post.image.each do |img| %>
-            <%= image_tag img %>
+        <div class="slick-slider">
+          <% @post.image.each do |image| %>
+            <div>
+              <%= image_tag image, class: 'd-block w-100', alt: "画像" %>
+            </div>
           <% end %>
         </div>
       <% end %>
 
+      <!-- その他の投稿詳細情報 -->
       <div class="name">
         <p>氏名</p>
-        <p><%= @post.user.name %>
+        <p><%=link_to @post.user.name, user_path(@post.user) %></p>
       </div>
       <div class="title">
         <p>題名</p>
-        <p><%= @post.title %>
+        <p><%= @post.title %></p>
       </div>
       <div class="body">
         <p>本文</p>
-        <p><%= @post.body %>
+        <p><%= @post.body %></p>
       </div>
       <div>
         <!-- タグリスト -->
-          <% @post.tags.each do |tag| %>
-            <i class="fa-sharp fa-solid fa-tag"></i>
-            <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
-          <% end %>
+        <% @post.tags.each do |tag| %>
+          <i class="fa-sharp fa-solid fa-tag"></i>
+          <%= link_to tag.name, search_tag_path(tag_id: tag.id) %>
+        <% end %>
       </div>
       <div class="button1">
-        <%= link_to "一覧へ", admin_posts_path, class: "btn btn-primary"%>
-        <%= link_to "コメントする",new_admin_post_post_comment_path(@post), class: "btn btn-orange" %>
-          <%= link_to "編集する", edit_admin_post_path(@post), class: "btn btn-success" %>
-          <%= link_to "削除", admin_post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
+        <%= link_to "一覧へ", admin_posts_path, class: "btn btn-primary" %>
+        <%= link_to "コメントする", new_admin_post_post_comment_path(@post), class: "btn btn-orange" %>
+        <%= link_to "編集する", edit_admin_post_path(@post), class: "btn btn-success" %>
+        <%= link_to "削除", admin_post_path(@post), method: :delete, "data-confirm" => "本当に削除しますか？", class: "btn btn-danger" %>
       </div>
     </div>
- </div>
-      <%= render "comment_index", post_comments: @post_comments, post: @post %>
+  </div>
+
+  <%= render "admin/posts/comment_index", post_comments: @post_comments, post: @post %>
 </div>
+
+<script>
+  // Slickスライダーの初期化
+  $(document).ready(function(){
+    $('.slick-slider').slick({
+      infinite: true,          // スライダーを無限ループさせる
+      slidesToShow: 1,         // 一度に表示するスライド数
+      slidesToScroll: 1,       // 1回でスクロールするスライド数
+      arrows: true,            // 前後の矢印を表示
+      dots: true,              // ドットナビゲーションを表示
+      autoplay: true,          // 自動再生
+      autoplaySpeed: 3000,     // 自動再生の間隔（ミリ秒）
+    });
+  });
+</script>
