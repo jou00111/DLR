@@ -20,7 +20,8 @@
             <p><%= @user.introduction %></p>
             <p>得意分野</p>
             <p><%= @user.specify_field %></p>
-            <%=link_to "編集する", edit_admin_user_path, class:"btn btn-prymary w-25" %>
+            <%=link_to "一覧へ", admin_users_path, class:"btn btn-primary w-25" %>
+            <%=link_to "編集する", edit_admin_user_path, class:"btn btn-success w-25 ml-2" %>
         </div>
     </div>    
     <div class="row">    

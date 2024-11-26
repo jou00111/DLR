@@ -1,10 +1,10 @@
 <% if @records.present? %>
   <% if @range == 'user' %>
       <h3> "<%= @word %>"の検索結果</h3>
-      <%= render 'public/users/index', users: @records %>
+      <%= render 'admin/users/index', users: @records %>
   <% elsif @range == 'post' %>
       <h3>"<%= @word %>"の検索結果</h3>
-      <%= render 'post_index', posts: @records %>
+      <%= render 'admin/searchs/post_index', posts: @records %>
   <% end %>
 <% else %>
   <p>No results found for "<%= @word %>".</p>

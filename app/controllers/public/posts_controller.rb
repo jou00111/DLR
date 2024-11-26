@@ -1,4 +1,5 @@
 class Public::PostsController < ApplicationController
+  before_action :authenticate_user!, only:[:new,:show,:edit,:update, :index]
   before_action :is_matching_login_user, only: [:edit, :update, :destroy]
   #新規投稿画面
   def new
@@ -28,7 +29,7 @@ class Public::PostsController < ApplicationController
     tag_list = params[:post][:name].split(',')
     if @post.update(post_params)  # 修正: post_params を渡す
        @post.save_tags(tag_list)
-      redirect_to post_path(@post), notice: "You have updated post successfully." # 編集後詳細画面へ
+      redirect_to post_path(@post), notice: "編集が完了しました。" # 編集後詳細画面へ
     else
       render :edit  # 編集失敗時はそのまま
     end
@@ -43,7 +44,7 @@ class Public::PostsController < ApplicationController
   
   #投稿詳細画面
   def show
-    @post = Post.find(params[:id])
+    @post = Post.includes(image_attachments: :blob).find(params[:id])
     @user = @post.user
     @post_comments = @post.post_comments
     @post_tags = @post.tags
@@ -60,10 +61,13 @@ class Public::PostsController < ApplicationController
       @tag = Tag.find(params[:tag_id])
       @posts = @tag.posts.order(created_at: :desc)
     else
-        @posts = Post.visible.order(created_at: :desc)
+      #処理速度軽減,N+1問題の解消
+        @posts = Post.visible
+             .order(created_at: :desc)
+             .includes(:tags, :user, image_attachments: :blob)
     end
     @tag_list = Tag.all
-    @posts = Kaminari.paginate_array(@posts).page(params[:page]).per(8)
+    @posts = @posts.page(params[:page]).per(8)
   end
   #投稿削除処理
   def destroy
