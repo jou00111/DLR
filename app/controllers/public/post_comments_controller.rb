@@ -13,7 +13,7 @@ class Public::PostCommentsController < ApplicationController
     if @post_comment.save
       redirect_to post_path(@post), notice: "コメントを投稿しました"
     else
-      Rails.logger.error "Failed to save PostComment: #{@post_comment.errors.full_messages}"
+      flash
       render :new, status: :unprocessable_entity
     end
   end
@@ -37,8 +37,12 @@ class Public::PostCommentsController < ApplicationController
     @post = Post.find(params[:post_id])
     @post_comment = PostComment.find(params[:id])
     @post = @post_comment.post
-    @post_comment.update(post_comment_params)
-    redirect_to post_path(@post)
+    if @post_comment.update(post_comment_params)
+      redirect_to admin_post_path(@post), notice: "コメントを投稿しました"
+    else
+      Rails.logger.error "編集に失敗しました: #{@post_comment.errors.full_messages}"
+      render :edit, status: :unprocessable_entity
+    end
   end
 
   #コメント削除

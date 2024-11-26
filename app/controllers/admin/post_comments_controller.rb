@@ -45,7 +45,7 @@ class Admin::PostCommentsController < ApplicationController
     @post_comment = PostComment.find(params[:id])
     @post = @post_comment.post
     @post_comment.update(post_comment_params)
-    redirect_to post_path(@post)
+    redirect_to admin_post_path(@post)
   end
 
   #コメント削除
