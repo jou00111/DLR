@@ -47,7 +47,16 @@ class User < ApplicationRecord
     end
     profile_image
   end
-
+  
+  def user_status
+    if is_active == true
+      "有効"
+    else
+      "退会"
+    end
+  end
+  
+  
   # is_activeがtrueならfalseを返す
   def active_for_authentication?
     super && (is_active == true)

@@ -1,4 +1,5 @@
 class Public::UsersController < ApplicationController
+  before_action :authenticate_user!, only:[:edit,:update]
   # マイページ
   def mypage
   @user = current_user
@@ -75,7 +76,7 @@ end
     @user.update(is_active: false)
     reset_session
     flash[:notice] = "退会処理を実行いたしました"
-    redirect_to root_path
+    redirect_to new_user_registration_path
   end
 
   private

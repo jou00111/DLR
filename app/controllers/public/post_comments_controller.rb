@@ -43,8 +43,9 @@ class Public::PostCommentsController < ApplicationController
 
   #コメント削除
   def destroy
+    @post = Post.find(params[:post_id])
     @post_comment = PostComment.find(params[:id])
-    @post_comment.delete
+    @post_comment.destroy
     redirect_to post_path(@post)
   end
 
