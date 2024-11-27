@@ -2,6 +2,7 @@
   <%= @user.name %> さんとのチャット
 </h2>
 
+<!-- メッセージ表示エリア -->
 <div class="message-container" style="max-height: 400px; overflow-y: auto; padding-bottom: 60px;">
   <% @chats.each do |chat| %>
     <% if chat.user_id == current_user.id %>
@@ -21,13 +22,15 @@
   <% end %>
 </div>
 
+<!-- エラー表示 -->
 <div class="errors">
   <%= render "layouts/error", obj: @chat %>
 </div>
 
+<!-- メッセージ送信用フォーム -->
 <%= form_with model: @chat, data: {remote: true}, class: "chat-form" do |f| %>
-  <div class="input-group fixed-bottom bg-white p-2 shadow" style="z-index: 1000; bottom: 0; left: 0; right: 0;">
-    <%= f.text_field :message, class: "form-control", placeholder: "メッセージを入力" %>
+  <div class="input-group bg-white p-2 shadow" >
+    <%= f.text_field :message, class: "form-control", placeholder: "メッセージを入力", style: "max-width: 85%;" %>
     <%= f.submit "送信", class: "btn btn-dark btn-sm ml-2" %>
   </div>
   <%= f.hidden_field :room_id, value: @room.id %>
