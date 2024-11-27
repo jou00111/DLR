@@ -20,7 +20,15 @@
       <tbody>
         <tr>
           <td><%= post_comment.id %></td>
-          <td><%= link_to post_comment.user.name, post_post_comment_path(post_comment.post, post_comment) %></td>
+          <td> <% if post_comment.admin.present? %>
+                <% if admin_signed_in? %>
+                  <%= link_to "管理者 (ID: #{post_comment.admin.id})", admin_post_post_comment_path(post_comment.post, post_comment), class: "text-secondary" %>
+                <% else %>
+                  <span class="text-secondary">管理者 (ID: <%= post_comment.admin.id %>)</span>
+                <% end %>
+              <% else %>
+                <%= link_to post_comment.user.name, post_post_comment_path(post_comment.post, post_comment) %>
+              <% end %></td>
           <td><%= post_comment.title %></td>
           <td><%= post_comment.body %></td>
           <td><div id="comment_raty" 

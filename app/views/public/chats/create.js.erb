@@ -1,2 +1,11 @@
-$('.message').append('<%= j(render "chat", chat: @chat) %>');
-$('input[type=text]').val("")
+// チャットメッセージの表示エリアに新しいメッセージを追加
+$('.message-container').append('<%= j render(@chat) %>');
+
+// メッセージ表示エリアを自動スクロール
+$('.message-container').scrollTop($('.message-container')[0].scrollHeight);
+
+// フォームの入力欄をリセット（text_fieldの場合）
+$('.chat-form input[type="text"]').val('');  // text_fieldに対してリセット
+
+// フォーム全体のリセット（送信ボタンをクリックした後にフォームを完全にリセット）
+$('.chat-form')[0].reset();  // これでフォームが完全にリセットされる

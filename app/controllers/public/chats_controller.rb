@@ -1,6 +1,5 @@
 class Public::ChatsController < ApplicationController
   # チャットルームの表示
-  # チャットルームの表示
   def show
     # チャット相手のユーザーを取得
     @user = User.find(params[:id])
@@ -16,23 +15,23 @@ class Public::ChatsController < ApplicationController
       @room = chat_rooms.room
     else
       # 共有チャットルームが存在しない場合、新しいチャットルームを作成
-      @room = Room.new
+      @room = Room.new(user_id: current_user.id)  # ここでuser_idを設定
       @room.save
 
       # チャットルームに現在のユーザーと相手ユーザーを追加
       ChatRoom.create(user_id: current_user.id, room_id: @room.id)
       ChatRoom.create(user_id: @user.id, room_id: @room.id)
     end
-
+  
     # チャットルームに関連付けられたメッセージを取得
     @chats = @room.chats
 
-    # 新しいメッセージを作成するための空のChatオブジェクトを生成
-    @chat = Chat.new(room_id: @room.id)
-  end
+    @chats = @room.chats
+    @chat = Chat.new(room_id: @room.id)  # ここで新しい空のメッセージオブジェクトを作成
+  end  
 
   # チャットメッセージの送信
-  def create
+    def create
     # フォームから送信されたメッセージを取得し、現在のユーザーに関連付けて保存
     @chat = current_user.chats.new(chat_params)
 

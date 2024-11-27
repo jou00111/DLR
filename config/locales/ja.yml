@@ -58,7 +58,14 @@ ja:
         specify_field: "得意分野を入力してください"
         name: "名前を入力してください"
         submit: "登録する"
+        signed_up: '新規登録が完了しました！'
+        updated: 'アカウント情報が更新されました！'
     failure:
-      unauthenticated: 'ログインが必要です。'    
-
-    
+      unauthenticated: 'ログインが必要です。'
+      invalid: '無効な情報です。再度ご確認ください。'
+      locked: 'アカウントがロックされています。'
+      not_found: 'ユーザーが見つかりませんでした。'
+      timeout: 'セッションの有効期限が切れました。再度ログインしてください。'
+      email_taken: 'このメールアドレスはすでに使われています。'
+      password_too_short: 'パスワードは最低6文字以上で入力してください。'
+      not_saved: "保存に失敗しました。再度お試しください。"  # ここをdevise.failure.not_savedに修正
