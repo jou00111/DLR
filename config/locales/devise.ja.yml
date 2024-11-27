@@ -1,0 +1,21 @@
+ja:
+  devise:
+    failure:
+      not_saved: "保存に失敗しました。再度お試しください。"  # この部分を追加
+
+    registrations:
+      signed_up: '新規登録が完了しました！'
+      updated: 'アカウント情報が更新されました！'
+      destroyed: 'アカウントが削除されました。'
+      
+    sessions:
+      signed_in: 'ログインに成功しました！'
+      signed_out: 'ログアウトしました。'
+      
+    passwords:
+      send_instructions: 'パスワードの再設定リンクを送信しました。'
+      updated: 'パスワードが更新されました。'
+      
+    unlocks:
+      send_instructions: 'アカウントロック解除のリンクを送信しました。'
+      unlocked: 'アカウントのロックが解除されました。'
