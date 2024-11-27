@@ -37,9 +37,9 @@ class Public::PostsController < ApplicationController
   
   def search_tag
     #検索結果画面でもタグ一覧表示
-    @tag_list = Tag.all
+    @tag_list = Tag.left_joins(:posts).group(:id).order('COUNT(posts.id) DESC')
     @tag = Tag.find(params[:tag_id])
-    @posts = @tag.posts
+    @posts = @tag.posts.page(params[:page])  
   end
   
   #投稿詳細画面

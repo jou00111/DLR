@@ -58,5 +58,7 @@ ja:
         specify_field: "得意分野を入力してください"
         name: "名前を入力してください"
         submit: "登録する"
+    failure:
+      unauthenticated: 'ログインが必要です。'    
 
     
