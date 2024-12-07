@@ -9,14 +9,11 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.user_id = current_user.id
-    tags = Vision.get_image_data(post_params[:image])
+    tags = Vision.get_image_data(post_params[:image]).flatten
      # 受け取った値を,で区切って配列にする
-    tag_list = params[:post][:name].split(',')
+    tag_list = params[:post][:name].split(',').concat(tags)   #"cloud, sky , blue" -> ["sky", "cloud", "blue"]
     if @post.save
       @post.save_tags(tag_list)
-      tags.each do |tag|
-        @post.tags.create(name: tag)
-      end
       redirect_to post_path(@post), notice: "投稿が完了しました。"   #投稿後詳細画面へ
     else
       render :new #投稿失敗時はそのまま
