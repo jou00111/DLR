@@ -5,6 +5,9 @@ require 'net/https'
 module Vision
   class << self
     def get_image_data(image_files)
+      
+      return [] if image_files.blank?  # 画像が添付されていない場合は空の配列を返す
+
       image_files.map do |image_file|
         # APIのURL作成
         api_url = "https://vision.googleapis.com/v1/images:annotate?key=#{ENV['GOOGLE_API_KEY']}"

@@ -82,11 +82,12 @@ ActiveRecord::Schema.define(version: 2024_11_25_140827) do
   end
 
   create_table "post_comments", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.integer "user_id"
     t.integer "post_id", null: false
     t.string "star", null: false
     t.string "title", null: false
     t.string "body", null: false
+    t.boolean "is_active", default: true, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "admin_id"
