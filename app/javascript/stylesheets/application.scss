@@ -1,6 +1,16 @@
 @use '~bootstrap/scss/bootstrap';
 @use 'owl.theme.default.css';
 
+body {
+  background: 
+    linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)), /* 白の透明レイヤー */
+    url(/assets/bg-2.jpg); /* 背景画像 */
+  background-size: cover; /* 背景画像を全体にフィット */
+  background-repeat: no-repeat; /* 繰り返しを防ぐ */
+  background-position: center; /* 中央に配置 */
+  background-attachment: fixed; /* 背景画像を固定 */
+}
+
 .card-img-top {
   object-fit: cover;
   height: 150px; /* 高さを固定 */
@@ -72,7 +82,7 @@
   white-space: nowrap;
 }
 .bg-image1 {
-  background-image: url('/assets/image1.jpg'); /* 画像ファイルのパスを指定 */
+  background-image: url(/assets/image1.jpg); /* 画像ファイルのパスを指定 */
   background-size: cover; /* 画像をコンテナに合わせてリサイズ */
   background-position: center; /* 画像を中央に配置 */
   height: 300px; /* 必要に応じて高さを調整 */

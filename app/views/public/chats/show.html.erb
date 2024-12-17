@@ -3,7 +3,7 @@
 </h2>
 
 <!-- メッセージ表示エリア -->
-<div class="message-container" style="max-height: 400px; overflow-y: auto; padding-bottom: 60px;">
+<div class="message-container bg-white" style="max-height: 400px; overflow-y: auto; padding-bottom: 60px;">
   <% @chats.each do |chat| %>
     <% if chat.user_id == current_user.id %>
       <div class="d-flex justify-content-end mb-3">
