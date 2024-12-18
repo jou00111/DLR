@@ -29,8 +29,11 @@
 ・自身の調べたことをメモとして残しておきたいとき
 ​
 ## 設計書
+・ER図
+![DLR_ER図](https://github.com/user-attachments/assets/25183f32-c318-4834-aadd-e99df78f1be1)
 
-・後ほど作成予定
+・アプリケーション詳細設計書
+[アプリケーション詳細設計書_DLR.pdf](https://github.com/user-attachments/files/18174863/_DLR.pdf)
 ​
 ## 開発環境
 - OS：Windows 11
