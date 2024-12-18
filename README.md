@@ -33,8 +33,8 @@
 ![DLR_ER図](https://github.com/user-attachments/assets/25183f32-c318-4834-aadd-e99df78f1be1)
 
 ・アプリケーション詳細設計書
-[アプリケーション詳細設計書_DLR.pdf](https://github.com/user-attachments/files/18174863/_DLR.pdf)
-​
+![アプリケーション詳細設計書_DLRpng](https://github.com/user-attachments/assets/f2bbaa43-31fd-48eb-9b42-72743091843c)
+
 ## 開発環境
 - OS：Windows 11
 - 言語：HTML,CSS,JavaScript,Ruby,SQL
