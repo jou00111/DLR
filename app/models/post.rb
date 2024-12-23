@@ -26,9 +26,9 @@ class Post < ApplicationRecord
     self.post_tags.destroy_all
 
     # 新しいタグを保存
-    tag_lists.each do |t|
+    tag_lists.uniq.each do |t| # 重複するタグを除外
       tag = Tag.find_or_create_by(name: t)
-      self.tags << tag
+      self.tags << tag unless self.tags.include?(tag) # タグが関連付け済みでない場合のみ追加
     end
   end
   
