@@ -12,6 +12,8 @@
           <th>投稿者名</th>
           <th>題名</th>
           <th>本文</th>
+          <th>評価</th>
+          <th>投稿日時</th>
         </tr>
       </thead>
 
@@ -36,6 +38,7 @@
                  data-star-on="<%= asset_path('star-on.png') %>"
                  data-star-off="<%= asset_path('star-off.png') %>"
                  data-star-half="<%= asset_path('star-half.png') %>"></div></td>
+          <td><%= l(post_comment.created_at, format: :long) %></td>       
         </tr>
       </tbody>
       <% end %>

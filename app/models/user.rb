@@ -1,6 +1,6 @@
 class User < ApplicationRecord
-  # Include default devise modules. Others available are:
-  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  scope :visible, -> { where(is_active: true) }
+  
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
@@ -14,8 +14,6 @@ class User < ApplicationRecord
   has_many :chats, dependent: :destroy
   has_many :chat_rooms, dependent: :destroy
   
-  
-
   # バリデーション
   validates :name, length: { minimum: 2, maximum: 20 }, uniqueness: true, presence: true
   validates :specify_field, presence: true
@@ -26,17 +24,36 @@ class User < ApplicationRecord
   has_one_attached :profile_image
 
   # 検索条件(ユーザー側)
-  def self.search_for(word, search)
-    case search
-    when 'perfect'
-      User.where(name: word)
-    when 'forward'
-      User.where('name LIKE ?', word + '%')
-    when 'backward'
-      User.where('name LIKE ?', '%' + word)
+  def self.search_for(word, search,current_user)
+    if current_user
+      # current_userが存在する場合（ログインユーザー）
+      case search
+      when "perfect_match"
+        User.where("name LIKE ?", "#{word}")
+      when "partial_match"
+        User.where("name LIKE ?", "%#{word}%")
+      when "forward_match"
+        User.where("name LIKE ?", "#{word}%")
+      when "backward_match"
+        User.where("name LIKE ?", "%#{word}")
+      else
+        User.visible
+      end
     else
-      User.where('name LIKE ?', '%' + word + '%')
-    end
+      # current_userがnilの場合（未ログインまたは退会したユーザーを含める）
+      case search
+      when "perfect_match"
+        User.where("name LIKE ?", "#{word}")
+      when "partial_match"
+        User.where("name LIKE ?", "%#{word}%")
+      when "forward_match"
+        User.where("name LIKE ?", "#{word}%")
+      when "backward_match"
+        User.where("name LIKE ?", "%#{word}")
+      else
+        User.all  # 退会したユーザーも含めて全てのユーザーを返す
+      end
+    end    
   end
 
   # デフォルトの画像設定
@@ -55,8 +72,7 @@ class User < ApplicationRecord
       "退会"
     end
   end
-  
-  
+
   # is_activeがtrueならfalseを返す
   def active_for_authentication?
     super && (is_active == true)

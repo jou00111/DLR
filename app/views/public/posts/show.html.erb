@@ -25,7 +25,9 @@
       </div>
       <div class="body">
         <p>本文</p>
-        <p><%= @post.body %></p>
+        <p><%= simple_format(@post.body, sanitize: true) %></p>
+        <p>投稿日時</p>
+        <p><%= l(@post.created_at, format: :long) %></p>
       </div>
       <div>
         <!-- タグリスト -->

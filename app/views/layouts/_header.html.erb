@@ -65,14 +65,16 @@
               <% end %>
             </ul>
 
-            <!-- 検索フォーム -->
-            <div class="ml-auto">
-              <% if admin_signed_in? %>
-                <%= render 'layouts/admin_search' %>
-              <% else %>
-                <%= render 'layouts/search' %>
-              <% end %>
-            </div>
+            <!-- 検索フォーム（ユーザーまたは管理者でログインした場合のみ表示） -->
+            <% if user_signed_in? || admin_signed_in? %>
+              <div class="ml-auto">
+                <% if admin_signed_in? %>
+                  <%= render 'layouts/admin_search' %>
+                <% else %>
+                  <%= render 'layouts/search' %>
+                <% end %>
+              </div>
+            <% end %>
           </div>
         </nav>
       </div>

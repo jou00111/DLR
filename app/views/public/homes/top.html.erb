@@ -21,6 +21,8 @@
           <div class="card-body">
             <h5 class="card-title"><%= item[:post].user.name %></h5>
             <p><%= item[:post].title %></p>
+            <p>投稿日時</p>
+            <p><%= l(item[:post].created_at, format: :long) %></p>
 
             <!-- 投稿内容のオーバーレイ部分 -->
             <div class="post-content-overlay">
