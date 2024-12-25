@@ -33,6 +33,8 @@
                 <p class="card-text text-truncate mb-4"><%= truncate(post.body, length: 100) %></p>
                 <div class="text-muted small">
                   <i class="fa-sharp fa-solid fa-user"></i> <%= post.user.name %>
+                  <p>投稿日時</p>
+                  <p><%= l(post.created_at, format: :long) %></p>
                   <div class="mt-2">
                     <% post.tags.each do |tag| %>
                       <%= link_to admin_search_tag_path(tag_id: tag.id), class: "badge  text-decoration-none mx-1" do %>

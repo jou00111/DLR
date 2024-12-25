@@ -1,6 +1,7 @@
 class Public::HomesController < ApplicationController
   def top
-    @posts = Post.limit(6).order(created_at: :desc) # 最新6件を取得
+    # 公開されている投稿のみ取得
+    @posts = Post.visible.limit(6).order(created_at: :desc)
     
     # 各投稿に対する平均評価を計算して渡す
     @posts_with_avg_rating = @posts.map do |post|

@@ -20,6 +20,8 @@
       <div class="body">
         <p>本文</p>
         <p><%= @post_comment.body %>
+        <p>投稿日時</p>
+        <p><%= l(@post_comment.created_at, format: :long) %></p>
       </div>
       <div class="button1">
         <%= link_to "投稿詳細へ", post_path(@post), class: "btn btn-primary mr-2"%>

@@ -25,7 +25,7 @@
       </div>
       <div class="body">
         <p>本文</p>
-        <p><%= @post.body %></p>
+        <p><%= simple_format(@post.body, sanitize: true) %></p>
       </div>
       <div>
         <!-- タグリスト -->

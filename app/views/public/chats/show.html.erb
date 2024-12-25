@@ -6,21 +6,27 @@
 <div class="message-container bg-white" style="max-height: 400px; overflow-y: auto; padding-bottom: 60px;">
   <% @chats.each do |chat| %>
     <% if chat.user_id == current_user.id %>
-      <div class="d-flex justify-content-end mb-3">
-        <p class="bg-secondary text-white p-2 rounded" style="max-width: 75%; word-wrap: break-word;">
-          <%= chat.message %>
-        </p>
+      <div class="d-flex flex-column align-items-end mb-3">
+        <div class="bg-secondary text-white p-2 rounded" style="max-width: 75%; word-wrap: break-word;">
+          <p class="mb-0"><%= chat.message %></p>
+        </div>
+        <small class="text-muted mt-1"><%= l(chat.created_at, format: :short) %></small>
       </div>
     <% else %>
-      <div class="d-flex mb-3">
-        <%= image_tag @user.get_profile_image, size: '30x30', class: 'rounded-circle' %>
-        <p class="bg-light p-2 rounded ml-2" style="max-width: 75%; word-wrap: break-word;">
-          <%= chat.message %>
-        </p>
+      <div class="d-flex flex-column align-items-start mb-3">
+        <div class="d-flex align-items-center">
+          <%= image_tag @user.get_profile_image, size: '30x30', class: 'rounded-circle mr-2' %>
+          <div class="bg-light p-2 rounded" style="max-width: 75%; word-wrap: break-word;">
+            <p class="mb-0"><%= chat.message %></p>
+          </div>
+        </div>
+        <small class="text-muted mt-1"><%= l(chat.created_at, format: :short) %></small>
       </div>
     <% end %>
   <% end %>
 </div>
+
+
 
 <!-- エラー表示 -->
 <div class="errors">

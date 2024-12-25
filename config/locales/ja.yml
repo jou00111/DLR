@@ -69,3 +69,9 @@ ja:
       email_taken: 'このメールアドレスはすでに使われています。'
       password_too_short: 'パスワードは最低6文字以上で入力してください。'
       not_saved: "保存に失敗しました。再度お試しください。"  # ここをdevise.failure.not_savedに修正
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"
+      long: "%Y年%m月%d日 %H時%M分"
+      short: "%m/%d %H:%M"
+

@@ -6,9 +6,9 @@ class Admin::SearchesController < ApplicationController
       @search = params[:search]
       
       if @range == "user"
-       @records = User.search_for(@word, @search)
+       @records = User.search_for(@word, @search,current_user)
       else    
-       @records = Post.search_for(@word, @search)
+       @records = Post.search_for(@word, @search,current_user)
        @tag_list = Tag.all
       end
   end    
